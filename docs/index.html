@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CIRCUS — Do Composed Image Retrieval Benchmarks Require Multimodal Composition?</title>
+<meta name="description" content="A shortcut audit and human-validated subset of CIRR, FashionIQ, LaSCo, and CIRCO that asks whether Composed Image Retrieval benchmarks actually require multimodal composition." />
+<meta property="og:title" content="CIRCUS — Do Composed Image Retrieval Benchmarks Require Multimodal Composition?" />
+<meta property="og:description" content="A shortcut audit and human-validated subset of CIRR, FashionIQ, LaSCo, and CIRCO." />
+<meta property="og:type" content="article" />
+<style>
+  :root {
+    --fg: #1b1f24;
+    --muted: #5a6470;
+    --bg: #ffffff;
+    --bg-soft: #f6f8fa;
+    --border: #d8dee4;
+    --accent: #0b5cad;
+    --accent-soft: #e6efff;
+  }
+  html { box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: inherit; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--fg);
+    background: var(--bg);
+    line-height: 1.55;
+    font-size: 17px;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 48px 24px 80px; }
+  header { text-align: center; margin-bottom: 32px; }
+  .eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    margin: 0 0 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .authors {
+    color: var(--fg);
+    font-size: 17px;
+    margin: 6px 0 4px;
+  }
+  .authors .todo, .affil .todo { color: var(--muted); font-style: italic; }
+  .affil { color: var(--muted); font-size: 15px; margin: 0 0 22px; }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 18px 0 8px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--bg-soft);
+    color: var(--fg);
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .btn:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn.primary:hover { background: #094a8c; color: #fff; }
+  section { margin-top: 40px; }
+  h2 {
+    font-size: 20px;
+    margin: 0 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: -0.005em;
+  }
+  p { margin: 0 0 12px; }
+  ul { margin: 0 0 12px; padding-left: 22px; }
+  li { margin-bottom: 4px; }
+  .tldr {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 4px;
+    font-size: 14px;
+  }
+  th, td {
+    border-bottom: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: right;
+  }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { font-weight: 600; background: var(--bg-soft); }
+  tbody tr:last-child td { border-bottom: 1px solid var(--border); }
+  caption {
+    caption-side: bottom;
+    text-align: left;
+    color: var(--muted);
+    font-size: 13px;
+    padding-top: 6px;
+  }
+  pre {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 6px 0 4px; }
+  .kpi {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    background: var(--bg-soft);
+  }
+  .kpi .n { display: block; font-size: 22px; font-weight: 700; color: var(--accent); line-height: 1.1; }
+  .kpi .l { color: var(--muted); font-size: 13px; margin-top: 4px; display: block; }
+  footer {
+    margin-top: 60px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+  }
+  @media (max-width: 600px) {
+    h1 { font-size: 26px; }
+    .wrap { padding: 32px 18px 60px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">CIRCUS · benchmark audit &amp; clean subset</span>
+  <h1>Do Composed Image Retrieval Benchmarks Require Multimodal Composition?</h1>
+  <p class="authors">
+    <strong>Matteo Attimonelli</strong><span class="todo"> · &lt;co-authors here&gt;</span>
+  </p>
+  <p class="affil"><span class="todo">&lt;Affiliation(s) here&gt;</span></p>
+
+  <div class="actions">
+    <!-- Replace href="#" with the arXiv / OpenReview link when available -->
+    <a class="btn primary" href="#"><span>Paper</span></a>
+    <a class="btn" href="https://github.com/matteoattimonelli/CIRCUS"><span>Code</span></a>
+    <a class="btn" href="https://github.com/matteoattimonelli/CIRCUS/tree/main/shortcut_free_subsets"><span>Shortcut-free subset</span></a>
+    <a class="btn" href="https://github.com/matteoattimonelli/CIRCUS/tree/main/final_dataset"><span>Validated subset</span></a>
+  </div>
+</header>
+
+<section>
+  <p class="tldr">
+    <strong>TL;DR.</strong> Across the four standard Composed Image Retrieval (CIR) benchmarks &mdash;
+    CIRR, FashionIQ, LaSCo, and CIRCO &mdash; a large fraction of test queries can be solved
+    by retrievers that see only the reference image <em>or</em> only the modification text.
+    We call these <em>shortcut-solvable</em> queries. CIRCUS audits all 11 public retrievers
+    used in our study, removes the shortcuts, and releases two cleaner evaluation sets so
+    future work can measure the part of the task that actually requires multimodal composition.
+  </p>
+</section>
+
+<section>
+  <h2>What this release ships</h2>
+  <ul>
+    <li><strong>A reproducible shortcut audit</strong> &mdash; for every test query in CIRR, FashionIQ, LaSCo, CIRCO, the rank of the ground-truth target under multimodal, text-only, and image-only inputs, aggregated across 11 retrievers (9 open-source + 2 commercial APIs).</li>
+    <li><strong>Dataset 1 &mdash; the shortcut-free subset</strong> (<code>shortcut_free_subsets/</code>): queries that no retriever could solve unimodally at <em>K</em>&nbsp;=&nbsp;10.</li>
+    <li><strong>Dataset 2 &mdash; the human-validated subset</strong> (<code>final_dataset/</code>): the subset of shortcut-free queries that human annotators judged to be well-formed CIR instances (≥ majority of annotators).</li>
+    <li><strong>The full reproduction pipeline</strong>: per-retriever encoders, two unimodal ablation configs, the aggregator that turns ranks into audit labels, and the re-evaluator that computes Recall@10 and the Composition Gap on either subset.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Headline numbers</h2>
+  <div class="kpis">
+    <div class="kpi"><span class="n">11</span><span class="l">retrievers audited</span></div>
+    <div class="kpi"><span class="n">4</span><span class="l">CIR benchmarks</span></div>
+    <div class="kpi"><span class="n">23&nbsp;228</span><span class="l">shortcut-free queries</span></div>
+    <div class="kpi"><span class="n">1&nbsp;689</span><span class="l">human-validated queries</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Shortcut audit (Table 1)</h2>
+  <p>Per-benchmark split sizes after running the audit across all 11 retrievers at <em>K</em>&nbsp;=&nbsp;10.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Benchmark</th>
+        <th>Total</th>
+        <th>composition&nbsp;required</th>
+        <th>unresolved</th>
+        <th>shortcut-free</th>
+        <th>shortcut-solvable</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>CIRR</td><td>4&nbsp;170</td><td>271</td><td>414</td><td>685</td><td>3&nbsp;485</td></tr>
+      <tr><td>FashionIQ</td><td>6&nbsp;003</td><td>1&nbsp;462</td><td>2&nbsp;607</td><td>4&nbsp;069</td><td>1&nbsp;934</td></tr>
+      <tr><td>LaSCo</td><td>30&nbsp;031</td><td>2&nbsp;064</td><td>16&nbsp;354</td><td>18&nbsp;418</td><td>11&nbsp;613</td></tr>
+      <tr><td>CIRCO</td><td>220</td><td>53</td><td>3</td><td>56</td><td>164</td></tr>
+    </tbody>
+    <caption>“shortcut-free” = composition-required ∪ unresolved.</caption>
+  </table>
+</section>
+
+<section>
+  <h2>Human-validated subset (Table 2)</h2>
+  <p>The subset of shortcut-free queries that survived human validation. For CIRR and CIRCO the full shortcut-free residue was audited; for FashionIQ and LaSCo a stratified sample of 1&nbsp;000&nbsp;+&nbsp;1&nbsp;000 was audited.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Benchmark</th>
+        <th>audited (comp_req)</th>
+        <th>validated_solved</th>
+        <th>audited (unresolved)</th>
+        <th>validated_unsolved</th>
+        <th>total validated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>CIRR</td><td>271</td><td>147</td><td>414</td><td>156</td><td>303</td></tr>
+      <tr><td>FashionIQ</td><td>1&nbsp;000</td><td>368</td><td>1&nbsp;000</td><td>218</td><td>586</td></tr>
+      <tr><td>LaSCo</td><td>1&nbsp;000</td><td>452</td><td>1&nbsp;000</td><td>306</td><td>758</td></tr>
+      <tr><td>CIRCO</td><td>53</td><td>39</td><td>3</td><td>3</td><td>42</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>2&nbsp;324</strong></td><td><strong>1&nbsp;006</strong></td><td><strong>2&nbsp;417</strong></td><td><strong>683</strong></td><td><strong>1&nbsp;689</strong></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Headline metric: Recall@10 and the Composition Gap</h2>
+  <p>
+    The headline metric is <strong>Recall@10</strong>. When a retriever is also run under the
+    two unimodal ablations (image-only zero-image and text-only drop-text), we report the
+    <strong>Composition Gap</strong>:
+  </p>
+  <pre><code>Composition Gap = R@10(multimodal) − max( R@10(text_only_drop_text), R@10(image_only_zero_image) )</code></pre>
+  <p>
+    A small Composition Gap means a retriever does not benefit much from seeing both
+    modalities &mdash; either the model is not actually composing, or the benchmark does not
+    require it. CIRCUS lets you measure both on cleaner subsets.
+  </p>
+</section>
+
+<section>
+  <h2>Retriever pool</h2>
+  <p>9 open-source + 2 commercial APIs:</p>
+  <ul>
+    <li>E5-Omni, GME-Qwen2VL, LamRA, LamRA-Qwen2.5VL, MM-Embed</li>
+    <li>Qwen3-VL-Embedding (2B and 8B), Rzen-Embed, VLM2Vec-V2</li>
+    <li>Gemini Embedding 2, Voyage Multimodal 3.5</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Reproduce in five stages</h2>
+  <ol>
+    <li><strong>Envs</strong> &mdash; one conda env per retriever family (<code>envs/create_*.sh</code>).</li>
+    <li><strong>Per-(dataset, retriever) retrieval</strong> &mdash; <code>retrieval/run_generate_retrieval_data*.sh</code> writes one JSON per pair with multimodal / text-only / image-only ranks.</li>
+    <li><strong>Aggregate</strong> &mdash; <code>retrieval/aggregate_retrieval_data.py</code> turns ranks into the shortcut-audit labels (already shipped under <code>shortcut_audit/</code>).</li>
+    <li><strong>Validated subset</strong> &mdash; <code>final_dataset/build_validated_subsets.py</code> derives <code>final_dataset/query_jsonl/</code> from <code>annotations/users/</code>.</li>
+    <li><strong>Re-evaluation</strong> &mdash; <code>subset_evaluation/run_subset_eval.sh</code> writes Recall@10 (and the two ablations, when requested) per <code>(dataset, subset, retriever)</code> to <code>subset_evaluation/logs/results.jsonl</code>.</li>
+  </ol>
+  <p>Full step-by-step instructions are in the <a href="https://github.com/matteoattimonelli/CIRCUS#reproduction-pipeline">repository README</a>.</p>
+</section>
+
+<section>
+  <h2>Citation</h2>
+  <pre><code>@inproceedings{circus,
+  title  = {Do Composed Image Retrieval Benchmarks Require Multimodal Composition?},
+  author = {Attimonelli, Matteo and &lt;co-authors&gt;},
+  year   = {&lt;year&gt;},
+  note   = {&lt;venue / arXiv ID&gt;},
+}</code></pre>
+</section>
+
+<footer>
+  <p>Code: <a href="https://github.com/matteoattimonelli/CIRCUS">github.com/matteoattimonelli/CIRCUS</a> &middot; Maintainer: Matteo Attimonelli</p>
+</footer>
+
+</div>
+</body>
+</html>
