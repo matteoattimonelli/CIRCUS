@@ -4,11 +4,15 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CIRCUS — Do Composed Image Retrieval Benchmarks Require Multimodal Composition?</title>
-<meta name="description" content="A shortcut audit of CIRR, FashionIQ, LaSCo, CIRCO across 11 retrievers — and the cleaner shortcut-free and human-validated subsets it produces." />
+<meta name="description" content="An 11-retriever shortcut audit of CIRR, FashionIQ, LaSCo, CIRCO — and the cleaner shortcut-free and human-validated subsets it produces." />
 <meta property="og:title" content="CIRCUS — Do Composed Image Retrieval Benchmarks Require Multimodal Composition?" />
 <meta property="og:description" content="An 11-retriever shortcut audit of CIRR, FashionIQ, LaSCo, CIRCO — and the cleaner subsets it produces." />
-<meta property="og:image" content="assets/shortcuts_gallery.png" />
+<meta property="og:image" content="assets/fig1_shortcuts.png" />
 <meta property="og:type" content="article" />
+<script>
+window.MathJax = { tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]] }, svg: { fontCache: "global" } };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 <style>
   :root {
     --fg: #111418;
@@ -34,7 +38,7 @@
   }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
 
   /* HERO */
   .hero {
@@ -70,18 +74,28 @@
   }
   .authors {
     color: var(--fg);
-    font-size: 17px;
-    margin: 6px 0 2px;
+    font-size: 16.5px;
+    margin: 6px auto 8px;
+    max-width: 920px;
   }
-  .authors strong { font-weight: 600; }
-  .todo { color: var(--muted); font-style: italic; }
-  .affil { color: var(--muted); font-size: 14px; margin: 0 0 22px; }
+  .authors .a { white-space: nowrap; }
+  .authors .a strong { font-weight: 600; }
+  .authors sup { color: var(--accent); font-weight: 600; margin: 0 1px; }
+  .affil {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 4px auto 6px;
+    max-width: 920px;
+  }
+  .affil .a { white-space: nowrap; margin: 0 6px; }
+  .corr { color: var(--muted); font-size: 13.5px; margin-top: 4px; }
+  .corr code { background: #fff; padding: 1px 6px; border: 1px solid var(--border); border-radius: 4px; }
   .actions {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    margin: 14px 0 4px;
+    margin: 18px 0 4px;
   }
   .btn {
     display: inline-flex;
@@ -100,11 +114,10 @@
   .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(20,30,60,0.08); border-color: var(--accent); color: var(--accent); text-decoration: none; }
   .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
   .btn.primary:hover { background: #0c45ab; color: #fff; border-color: #0c45ab; }
-  .btn .ico { width: 16px; height: 16px; display: inline-block; }
 
   /* TEASER */
   .teaser {
-    max-width: 980px;
+    max-width: 1000px;
     margin: 28px auto -36px;
     padding: 0 24px;
     transform: translateY(36px);
@@ -163,12 +176,27 @@
   .figs-2 figure { margin: 0; }
   @media (max-width: 720px) { .figs-2 { grid-template-columns: 1fr; } }
 
-  table { width: 100%; border-collapse: collapse; margin: 8px 0 4px; font-size: 14px; }
+  .eq-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 8px 0 12px;
+    box-shadow: 0 2px 8px rgba(20,30,60,0.04);
+  }
+  .eq-card .eq { font-size: 18px; text-align: center; padding: 6px 0 2px; }
+  .eq-card .legend { color: var(--muted); font-size: 13.5px; margin-top: 8px; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; }
+  table { width: 100%; border-collapse: collapse; margin: 0; font-size: 13.5px; }
   th, td { border-bottom: 1px solid var(--border); padding: 9px 10px; text-align: right; }
   th:first-child, td:first-child { text-align: left; }
-  thead th { font-weight: 600; background: var(--bg-soft); }
-  caption { caption-side: bottom; text-align: left; color: var(--muted); font-size: 13px; padding-top: 6px; }
+  thead th { font-weight: 600; background: var(--bg-soft); position: sticky; top: 0; }
   tbody tr:hover { background: #fafbfe; }
+  tbody tr:last-child td { border-bottom: none; }
+  table.compact { font-size: 13px; }
+  caption { caption-side: bottom; text-align: left; color: var(--muted); font-size: 13px; padding: 8px 4px 0; }
+  .group-sep { border-left: 1px solid var(--border); }
 
   pre {
     background: #0e1320;
@@ -180,7 +208,7 @@
     line-height: 1.55;
   }
   pre code { color: inherit; }
-  p code, li code { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-size: 0.92em; }
+  p code, li code, td code { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-size: 0.92em; }
   code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
 
   footer {
@@ -207,9 +235,27 @@
     <span class="eyebrow">CIRCUS · Benchmark audit &amp; clean subsets</span>
     <h1>Do Composed Image Retrieval Benchmarks Require Multimodal Composition?</h1>
     <p class="authors">
-      <strong>Matteo Attimonelli</strong><span class="todo"> · &lt;co-authors here&gt;</span>
+      <span class="a"><strong>Matteo Attimonelli</strong><sup>⛵👕</sup></span> ·
+      <span class="a"><strong>Alessandro De Bellis</strong><sup>⛵</sup></span> ·
+      <span class="a"><strong>Aryo Pradipta Gema</strong><sup>🐕</sup></span> ·
+      <span class="a"><strong>Rohit Saxena</strong><sup>🐕</sup></span> ·
+      <span class="a"><strong>Monica Sekoyan</strong><sup>🐕</sup></span> ·
+      <span class="a"><strong>Wai-Chung Kwan</strong><sup>🐕</sup></span> ·
+      <span class="a"><strong>Claudio Pomo</strong><sup>⛵</sup></span> ·
+      <span class="a"><strong>Alessandro Suglia</strong><sup>🐕</sup></span> ·
+      <span class="a"><strong>Dietmar Jannach</strong><sup>🦒</sup></span> ·
+      <span class="a"><strong>Tommaso Di Noia</strong><sup>⛵</sup></span> ·
+      <span class="a"><strong>Pasquale Minervini</strong><sup>🐕⏰</sup></span>
     </p>
-    <p class="affil"><span class="todo">&lt;Affiliation(s) here&gt;</span></p>
+    <p class="affil">
+      <span class="a">⛵ Politecnico di Bari</span>
+      <span class="a">👕 Sapienza University of Rome</span>
+      <span class="a">🐕 University of Edinburgh</span>
+      <span class="a">🦒 University of Klagenfurt</span>
+      <span class="a">⏰ Miniml.AI</span>
+    </p>
+    <p class="corr">Contact: <code>matteo.attimonelli@poliba.it</code></p>
+
     <div class="actions">
       <!-- Replace href="#" with the arXiv / OpenReview link when available -->
       <a class="btn primary" href="#">📄 Paper</a>
@@ -223,7 +269,7 @@
 
 <div class="teaser">
   <figure class="teaser-card">
-    <img src="assets/shortcuts_gallery.png" alt="A gallery of CIR queries solvable from a single modality — the reference image alone or the modification text alone." />
+    <img src="assets/fig1_shortcuts.png" alt="Examples of CIR queries where a retriever finds the ground-truth target from a single modality — the reference image alone or the modification text alone." />
     <figcaption class="teaser-cap">Many “composed” queries in CIRR, FashionIQ, LaSCo, and CIRCO are solvable from <em>one</em> modality. CIRCUS finds them and removes them.</figcaption>
   </figure>
 </div>
@@ -233,12 +279,14 @@
 
 <section>
   <p class="tldr">
-    <strong>TL;DR.</strong> Composed Image Retrieval is supposed to require both a reference image
+    <strong>TL;DR.</strong> Composed Image Retrieval (CIR) should require both a reference image
     <em>and</em> a modification text. Across the four standard CIR benchmarks &mdash; CIRR, FashionIQ,
-    LaSCo, and CIRCO &mdash; we audit 11 retrievers (9 open-source + 2 commercial APIs) and find
+    LaSCo, CIRCO &mdash; we audit 11 retrievers (9 open-source + 2 commercial APIs) and find
     that a large share of test queries can be solved with only the image <em>or</em> only the text.
-    CIRCUS releases the audit, the cleaned <strong>shortcut-free</strong> queries, and a
-    human-<strong>validated</strong> subset of 1&nbsp;689 queries that survived both filters.
+    CIRCUS releases the audit, the resulting <strong>shortcut-free</strong> subset (23 228 queries),
+    and a human-<strong>validated</strong> subset (1 689 queries) that survived both filters &mdash;
+    plus a normalised <strong>Composition Gap</strong> metric to quantify how much a retriever
+    actually composes.
   </p>
 </section>
 
@@ -253,51 +301,31 @@
 </section>
 
 <section>
-  <h2>What does a shortcut look like?</h2>
-  <p>
-    Two qualitative galleries from CIRR. <em>Left</em>: the retriever ignores the text and still
-    finds the target from the reference image alone. <em>Right</em>: the retriever ignores the
-    image and still finds the target from the modification text alone. Either of these makes
-    the “composed” task degenerate.
-  </p>
-  <div class="figs-2">
-    <figure>
-      <img src="assets/cirr_image_only_examples.png" alt="CIRR queries that a retriever solves using only the reference image." />
-      <figcaption>Image-only shortcut — text is ignored, target retrieved from the reference alone.</figcaption>
-    </figure>
-    <figure>
-      <img src="assets/cirr_text_only_examples.png" alt="CIRR queries that a retriever solves using only the modification text." />
-      <figcaption>Text-only shortcut — reference image is ignored, target retrieved from the text alone.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section>
   <h2>How CIRCUS works</h2>
   <ol>
     <li><strong>Encode each query three times</strong> for every retriever in the pool: with both modalities (the standard CIR setting), with only the text (image zeroed out), and with only the image (text dropped).</li>
     <li><strong>Record the rank</strong> of the ground-truth target under each modality.</li>
-    <li><strong>Aggregate across the 11-retriever pool</strong> and assign each query a label:
+    <li><strong>Aggregate across the 11-retriever pool</strong> and assign each query one of four labels:
       <ul>
         <li><code>composition_required</code> — at least one retriever solves it with both modalities; none solves it unimodally.</li>
         <li><code>unresolved</code> — no retriever solves it under any modality.</li>
         <li><code>shortcut_solvable</code> — at least one retriever solves it with only image or only text. <em>Excluded.</em></li>
-        <li><code>shortcut_free</code> — the union of the first two (kept).</li>
+        <li><code>shortcut_free</code> — the union of <code>composition_required</code> and <code>unresolved</code>.</li>
       </ul>
     </li>
-    <li><strong>Validate by humans</strong>: re-show the surviving queries to multiple annotators using the four-category rubric below. Queries kept only when a majority of annotators marked them as well-formed CIR.</li>
+    <li><strong>Human validation</strong>: re-show the surviving queries to multiple annotators using the rubric below. Queries are kept only when a majority of annotators marked them as well-formed CIR.</li>
   </ol>
 </section>
 
 <section>
   <h2>Validity rubric (used during human validation)</h2>
   <figure>
-    <img src="assets/validity_gallery_no_broad.png" alt="Side-by-side examples of the validity categories: valid, invalid text, invalid image, invalid target." />
-    <figcaption>Four categories shown to annotators: <code>VALIDATED</code>, <code>INVALID_TEXT_QUERY</code>, <code>INVALID_IMAGE_QUERY</code>, <code>INVALID_TARGET_IMAGE</code> (plus <code>QUERY_TOO_BROAD</code>).</figcaption>
+    <img src="assets/fig_validity.png" alt="Side-by-side examples of the validity categories: valid, invalid text, invalid image, invalid target, and overly-broad queries." />
+    <figcaption>Categories shown to annotators: <code>VALIDATED</code>, <code>INVALID_TEXT_QUERY</code>, <code>INVALID_IMAGE_QUERY</code>, <code>INVALID_TARGET_IMAGE</code>, <code>QUERY_TOO_BROAD</code>. The full rubric (severity ordering, decision flow, the ≥10-alternatives heuristic) is in <code>annotations/annotation_instructions.md</code>.</figcaption>
   </figure>
   <figure>
     <img src="assets/annotation_interface.png" alt="Screenshot of the annotation interface shown to annotators." />
-    <figcaption>The annotation interface used by every annotator. The full rubric is in <code>annotations/annotation_instructions.md</code>.</figcaption>
+    <figcaption>The annotation interface every annotator worked with.</figcaption>
   </figure>
 </section>
 
@@ -310,7 +338,7 @@
     </figure>
     <figure>
       <img src="assets/signature_agreement_heatmap.png" alt="Pairwise full-signature agreement heatmap across annotators." />
-      <figcaption>Pairwise full-signature agreement (same set of category flags) across annotators.</figcaption>
+      <figcaption>Pairwise full-signature agreement (same set of category flags).</figcaption>
     </figure>
   </div>
   <p>The full write-up &mdash; including Krippendorff's α &mdash; is in <a href="https://github.com/matteoattimonelli/CIRCUS/blob/master/annotations/agreement_report.md"><code>annotations/agreement_report.md</code></a>.</p>
@@ -318,73 +346,161 @@
 
 <section>
   <h2>Shortcut audit (Table 1)</h2>
-  <p>Per-benchmark split sizes after running the audit across all 11 retrievers at <em>K</em>&nbsp;=&nbsp;10.</p>
-  <table>
-    <thead>
-      <tr>
-        <th>Benchmark</th>
-        <th>Total</th>
-        <th>composition&nbsp;required</th>
-        <th>unresolved</th>
-        <th>shortcut-free</th>
-        <th>shortcut-solvable</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>CIRR</td><td>4&nbsp;170</td><td>271</td><td>414</td><td>685</td><td>3&nbsp;485</td></tr>
-      <tr><td>FashionIQ</td><td>6&nbsp;003</td><td>1&nbsp;462</td><td>2&nbsp;607</td><td>4&nbsp;069</td><td>1&nbsp;934</td></tr>
-      <tr><td>LaSCo</td><td>30&nbsp;031</td><td>2&nbsp;064</td><td>16&nbsp;354</td><td>18&nbsp;418</td><td>11&nbsp;613</td></tr>
-      <tr><td>CIRCO</td><td>220</td><td>53</td><td>3</td><td>56</td><td>164</td></tr>
-    </tbody>
-    <caption>“shortcut-free” = composition-required ∪ unresolved.</caption>
-  </table>
+  <p>Per-benchmark split sizes after running the audit across all 11 retrievers at $K = 10$.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Benchmark</th>
+          <th>Total</th>
+          <th>composition&nbsp;required</th>
+          <th>unresolved</th>
+          <th>shortcut-free</th>
+          <th>shortcut-solvable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>CIRR</td><td>4&nbsp;170</td><td>271</td><td>414</td><td><strong>685</strong></td><td>3&nbsp;485</td></tr>
+        <tr><td>FashionIQ</td><td>6&nbsp;003</td><td>1&nbsp;462</td><td>2&nbsp;607</td><td><strong>4&nbsp;069</strong></td><td>1&nbsp;934</td></tr>
+        <tr><td>LaSCo</td><td>30&nbsp;031</td><td>2&nbsp;064</td><td>16&nbsp;354</td><td><strong>18&nbsp;418</strong></td><td>11&nbsp;613</td></tr>
+        <tr><td>CIRCO</td><td>220</td><td>53</td><td>3</td><td><strong>56</strong></td><td>164</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="caption" style="color:var(--muted); font-size:13px; margin-top:6px;">“shortcut-free” = <code>composition_required</code> ∪ <code>unresolved</code>.</p>
 </section>
 
 <section>
   <h2>Human-validated subset (Table 2)</h2>
-  <p>For CIRR and CIRCO the full shortcut-free residue was audited; for FashionIQ and LaSCo a stratified sample of 1&nbsp;000&nbsp;+&nbsp;1&nbsp;000 was audited.</p>
-  <table>
-    <thead>
-      <tr>
-        <th>Benchmark</th>
-        <th>audited (comp_req)</th>
-        <th>validated_solved</th>
-        <th>audited (unresolved)</th>
-        <th>validated_unsolved</th>
-        <th>total validated</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>CIRR</td><td>271</td><td>147</td><td>414</td><td>156</td><td>303</td></tr>
-      <tr><td>FashionIQ</td><td>1&nbsp;000</td><td>368</td><td>1&nbsp;000</td><td>218</td><td>586</td></tr>
-      <tr><td>LaSCo</td><td>1&nbsp;000</td><td>452</td><td>1&nbsp;000</td><td>306</td><td>758</td></tr>
-      <tr><td>CIRCO</td><td>53</td><td>39</td><td>3</td><td>3</td><td>42</td></tr>
-      <tr><td><strong>Total</strong></td><td><strong>2&nbsp;324</strong></td><td><strong>1&nbsp;006</strong></td><td><strong>2&nbsp;417</strong></td><td><strong>683</strong></td><td><strong>1&nbsp;689</strong></td></tr>
-    </tbody>
-  </table>
+  <p>For CIRR and CIRCO the full shortcut-free residue was audited; for FashionIQ and LaSCo a stratified sample of 1&nbsp;000 + 1&nbsp;000 was audited.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Benchmark</th>
+          <th>audited (comp_req)</th>
+          <th>validated_solved</th>
+          <th>audited (unresolved)</th>
+          <th>validated_unsolved</th>
+          <th>total validated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>CIRR</td><td>271</td><td>147</td><td>414</td><td>156</td><td><strong>303</strong></td></tr>
+        <tr><td>FashionIQ</td><td>1&nbsp;000</td><td>368</td><td>1&nbsp;000</td><td>218</td><td><strong>586</strong></td></tr>
+        <tr><td>LaSCo</td><td>1&nbsp;000</td><td>452</td><td>1&nbsp;000</td><td>306</td><td><strong>758</strong></td></tr>
+        <tr><td>CIRCO</td><td>53</td><td>39</td><td>3</td><td>3</td><td><strong>42</strong></td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>2&nbsp;324</strong></td><td><strong>1&nbsp;006</strong></td><td><strong>2&nbsp;417</strong></td><td><strong>683</strong></td><td><strong>1&nbsp;689</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <section>
-  <h2>Headline metric &mdash; Recall@10 and the Composition Gap</h2>
+  <h2>The Composition Gap</h2>
   <p>
-    The headline metric is <strong>Recall@10</strong>. When the same retriever is also evaluated under the two unimodal ablations
-    (image-only zero-image and text-only drop-text), we report the <strong>Composition Gap</strong>:
+    Once the subsets are built, we need to ask: <em>does a retriever actually use both modalities?</em>
+    Following the paper, we define the <strong>normalised Composition Gap</strong>:
   </p>
-  <pre><code>Composition Gap = R@10(multimodal) − max( R@10(text-only), R@10(image-only) )</code></pre>
+
+  <div class="eq-card">
+    <div class="eq">
+      $$\mathrm{CompGap} \;=\; 1 \;-\; \dfrac{\max(I,\, T)}{\mathrm{MM}}$$
+    </div>
+    <p class="legend" style="margin-bottom:0">
+      where $\mathrm{MM}$, $I$, and $T$ are the full-catalogue nDCG of the same retriever under the
+      multimodal, image-only, and text-only inputs.
+    </p>
+  </div>
+
   <p>
-    A small Composition Gap means the retriever does not actually benefit from seeing both modalities &mdash;
-    either the model is not composing, or the benchmark does not require composition.
-    CIRCUS lets you measure both, on cleaner subsets.
+    $\mathrm{CompGap}$ measures the fraction of ranking quality that <em>cannot</em> be recovered from
+    either unimodal input. Larger values mean the retriever genuinely needs both modalities; values
+    close to zero mean one modality is enough.
   </p>
+
+  <p>
+    We use a normalised gap because absolute nDCG varies a lot across splits — the shortcut-free and
+    validated subsets are harder, so the absolute multimodal score drops. Normalising by $\mathrm{MM}$
+    makes a fair comparison possible. An MRR variant
+    $\mathrm{CompGap}_{\mathrm{MRR}} = 1 - \max(I,T)/\mathrm{MM}_{\mathrm{MRR}}$ follows the same trends
+    and is reported in the appendix.
+  </p>
+
+  <figure>
+    <img src="assets/compgap_bars.png" alt="Bar chart of retriever-averaged Composition Gap (nDCG) on Full, shortcut-free, and validated splits for each dataset." />
+    <figcaption>Retriever-averaged $\mathrm{CompGap}$ on the original benchmark (<strong>Full</strong>), CIRCUS-SF (<strong>SF</strong>), and CIRCUS-V (<strong>V</strong>).</figcaption>
+  </figure>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Benchmark</th>
+          <th>Full</th>
+          <th>Shortcut-free (SF)</th>
+          <th>Validated (V)</th>
+          <th>Full → V</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>CIRR</td><td>0.137</td><td>0.313</td><td><strong>0.361</strong></td><td>+0.224</td></tr>
+        <tr><td>FashionIQ</td><td>0.298</td><td>0.378</td><td><strong>0.477</strong></td><td>+0.179</td></tr>
+        <tr><td>LaSCo</td><td>0.069</td><td>0.079</td><td><strong>0.209</strong></td><td>+0.140</td></tr>
+        <tr><td>CIRCO</td><td>0.470</td><td>0.569</td><td><strong>0.562</strong></td><td>+0.092</td></tr>
+      </tbody>
+      <caption>Validated CIR queries depend on multimodal composition much more than the raw benchmarks suggest. CIRCO already had a high CompGap because its original composition-required core is relatively clean.</caption>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Recall@10 across the audited subsets</h2>
+  <p>
+    Recall@10 (%) on the original benchmark (<strong>Full</strong>), the shortcut-free subset (<strong>SF</strong>), and the validated subset (<strong>V</strong>). Image-only and text-only columns are omitted because, by construction, no unimodal configuration solves these queries within top-10. <strong>Best</strong> in column is bold, <u>second-best</u> underlined.
+  </p>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead>
+        <tr>
+          <th rowspan="2">Retriever</th>
+          <th colspan="3">CIRR</th>
+          <th colspan="3" class="group-sep">FashionIQ</th>
+          <th colspan="3" class="group-sep">LaSCo</th>
+          <th colspan="3" class="group-sep">CIRCO</th>
+        </tr>
+        <tr>
+          <th>Full</th><th>SF</th><th>V</th>
+          <th class="group-sep">Full</th><th>SF</th><th>V</th>
+          <th class="group-sep">Full</th><th>SF</th><th>V</th>
+          <th class="group-sep">Full</th><th>SF</th><th>V</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>E5-Omni</td><td>55.2</td><td>11.8</td><td>15.2</td><td class="group-sep">16.9</td><td>6.9</td><td>12.5</td><td class="group-sep">9.4</td><td>0.5</td><td>2.3</td><td class="group-sep">65.9</td><td>39.3</td><td>38.1</td></tr>
+        <tr><td>GME-Qwen2VL</td><td>64.4</td><td>16.1</td><td>20.4</td><td class="group-sep">31.1</td><td>14.7</td><td>23.8</td><td class="group-sep">13.2</td><td>1.9</td><td>11.2</td><td class="group-sep"><u>85.9</u></td><td><u>69.6</u></td><td><u>66.7</u></td></tr>
+        <tr><td>LamRA</td><td>65.1</td><td><strong>18.1</strong></td><td><u>22.6</u></td><td class="group-sep"><strong>33.2</strong></td><td><strong>17.5</strong></td><td><strong>31.1</strong></td><td class="group-sep">12.3</td><td>1.3</td><td>7.5</td><td class="group-sep">81.4</td><td><u>69.6</u></td><td><u>66.7</u></td></tr>
+        <tr><td>LamRA-Qwen2.5VL</td><td><u>65.2</u></td><td>15.2</td><td>19.8</td><td class="group-sep">31.9</td><td><u>16.3</u></td><td><u>29.7</u></td><td class="group-sep">12.8</td><td>1.3</td><td>7.0</td><td class="group-sep">84.5</td><td>67.9</td><td>64.3</td></tr>
+        <tr><td>MM-Embed</td><td>63.3</td><td>16.2</td><td>20.1</td><td class="group-sep">25.5</td><td>11.3</td><td>19.6</td><td class="group-sep"><strong>18.2</strong></td><td><strong>3.1</strong></td><td><strong>19.0</strong></td><td class="group-sep">82.7</td><td>58.9</td><td>61.9</td></tr>
+        <tr><td>Qwen3-VL-2B</td><td>64.6</td><td>13.7</td><td>17.6</td><td class="group-sep">28.3</td><td>11.7</td><td>24.7</td><td class="group-sep">11.2</td><td>1.6</td><td>10.6</td><td class="group-sep">78.2</td><td>57.1</td><td>59.5</td></tr>
+        <tr><td>Qwen3-VL-8B</td><td><strong>70.1</strong></td><td>17.2</td><td><strong>24.1</strong></td><td class="group-sep"><u>32.6</u></td><td>14.7</td><td>28.5</td><td class="group-sep">13.3</td><td><u>2.1</u></td><td><u>13.5</u></td><td class="group-sep"><strong>86.4</strong></td><td><strong>71.4</strong></td><td><strong>71.4</strong></td></tr>
+        <tr><td>Rzen-Embed</td><td><strong>70.1</strong></td><td><u>17.4</u></td><td>22.3</td><td class="group-sep">30.8</td><td>14.9</td><td>26.2</td><td class="group-sep">12.8</td><td>1.7</td><td>10.7</td><td class="group-sep"><strong>86.4</strong></td><td><strong>71.4</strong></td><td><u>66.7</u></td></tr>
+        <tr><td>VLM2Vec-V2</td><td>55.0</td><td>11.1</td><td>15.2</td><td class="group-sep">15.8</td><td>5.4</td><td>9.2</td><td class="group-sep">9.1</td><td>1.3</td><td>7.9</td><td class="group-sep">38.6</td><td>19.6</td><td>23.8</td></tr>
+        <tr><td>Gemini Emb. 2</td><td>49.2</td><td>11.8</td><td>15.2</td><td class="group-sep">24.9</td><td>11.5</td><td>18.7</td><td class="group-sep">12.4</td><td><u>2.1</u></td><td>10.4</td><td class="group-sep">74.1</td><td>62.5</td><td>61.9</td></tr>
+        <tr><td>Voyage MM-3.5</td><td>54.4</td><td>10.2</td><td>14.2</td><td class="group-sep">19.4</td><td>7.4</td><td>14.7</td><td class="group-sep"><u>14.8</u></td><td>1.8</td><td>10.4</td><td class="group-sep">77.7</td><td>51.8</td><td>52.4</td></tr>
+      </tbody>
+      <caption>Recall@10 collapses dramatically when shortcut queries are removed — e.g. Qwen3-VL-8B on CIRR goes 70.1 → 17.2 → 24.1, and on FashionIQ 32.6 → 14.7 → 28.5.</caption>
+    </table>
+  </div>
 </section>
 
 <section>
   <h2>Retriever pool</h2>
   <p>9 open-source + 2 commercial APIs:</p>
   <ul>
-    <li>E5-Omni, GME-Qwen2VL, LamRA, LamRA-Qwen2.5VL, MM-Embed</li>
-    <li>Qwen3-VL-Embedding (2B and 8B), Rzen-Embed, VLM2Vec-V2</li>
-    <li>Gemini Embedding 2, Voyage Multimodal 3.5</li>
+    <li>E5-Omni · GME-Qwen2VL · LamRA · LamRA-Qwen2.5VL · MM-Embed</li>
+    <li>Qwen3-VL-Embedding (2B and 8B) · Rzen-Embed · VLM2Vec-V2</li>
+    <li>Gemini Embedding 2 · Voyage Multimodal 3.5</li>
   </ul>
 </section>
 
@@ -393,18 +509,21 @@
   <ol>
     <li><strong>Envs</strong> — one conda env per retriever family (<code>envs/create_*.sh</code>).</li>
     <li><strong>Per-(dataset, retriever) retrieval</strong> — <code>retrieval/run_generate_retrieval_data*.sh</code> writes one JSON per pair with multimodal / text-only / image-only ranks.</li>
-    <li><strong>Aggregate</strong> — <code>retrieval/aggregate_retrieval_data.py</code> turns ranks into the shortcut-audit labels (already shipped under <code>shortcut_audit/</code>).</li>
+    <li><strong>Aggregate</strong> — <code>retrieval/aggregate_retrieval_data.py</code> turns ranks into the audit labels (already shipped under <code>shortcut_audit/</code>).</li>
     <li><strong>Validated subset</strong> — <code>final_dataset/build_validated_subsets.py</code> derives <code>final_dataset/query_jsonl/</code> from <code>annotations/users/</code>.</li>
     <li><strong>Re-evaluation</strong> — <code>subset_evaluation/run_subset_eval.sh</code> writes Recall@10 (and the two ablations, when requested) per <code>(dataset, subset, retriever)</code> to <code>subset_evaluation/logs/results.jsonl</code>.</li>
   </ol>
-  <p>Full step-by-step instructions are in the <a href="https://github.com/matteoattimonelli/CIRCUS#reproduction-pipeline">repository README</a>.</p>
+  <p>Step-by-step instructions are in the <a href="https://github.com/matteoattimonelli/CIRCUS#reproduction-pipeline">repository README</a>.</p>
 </section>
 
 <section>
   <h2>Citation</h2>
   <pre><code>@inproceedings{circus,
   title  = {Do Composed Image Retrieval Benchmarks Require Multimodal Composition?},
-  author = {Attimonelli, Matteo and &lt;co-authors&gt;},
+  author = {Attimonelli, Matteo and De Bellis, Alessandro and Gema, Aryo Pradipta and
+            Saxena, Rohit and Sekoyan, Monica and Kwan, Wai-Chung and Pomo, Claudio and
+            Suglia, Alessandro and Jannach, Dietmar and Di Noia, Tommaso and
+            Minervini, Pasquale},
   year   = {&lt;year&gt;},
   note   = {&lt;venue / arXiv ID&gt;},
 }</code></pre>
@@ -416,7 +535,7 @@
 <footer>
   <div class="wrap">
     Code: <a href="https://github.com/matteoattimonelli/CIRCUS">github.com/matteoattimonelli/CIRCUS</a>
-    &middot; Maintainer: Matteo Attimonelli
+    &middot; Maintainer: Matteo Attimonelli (<code>matteo.attimonelli@poliba.it</code>)
   </div>
 </footer>
 
