@@ -4,19 +4,22 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CIRCUS — Do Composed Image Retrieval Benchmarks Require Multimodal Composition?</title>
-<meta name="description" content="A shortcut audit and human-validated subset of CIRR, FashionIQ, LaSCo, and CIRCO that asks whether Composed Image Retrieval benchmarks actually require multimodal composition." />
+<meta name="description" content="A shortcut audit of CIRR, FashionIQ, LaSCo, CIRCO across 11 retrievers — and the cleaner shortcut-free and human-validated subsets it produces." />
 <meta property="og:title" content="CIRCUS — Do Composed Image Retrieval Benchmarks Require Multimodal Composition?" />
-<meta property="og:description" content="A shortcut audit and human-validated subset of CIRR, FashionIQ, LaSCo, and CIRCO." />
+<meta property="og:description" content="An 11-retriever shortcut audit of CIRR, FashionIQ, LaSCo, CIRCO — and the cleaner subsets it produces." />
+<meta property="og:image" content="assets/shortcuts_gallery.png" />
 <meta property="og:type" content="article" />
 <style>
   :root {
-    --fg: #1b1f24;
-    --muted: #5a6470;
+    --fg: #111418;
+    --muted: #5b6573;
     --bg: #ffffff;
-    --bg-soft: #f6f8fa;
-    --border: #d8dee4;
-    --accent: #0b5cad;
-    --accent-soft: #e6efff;
+    --bg-soft: #f6f8fb;
+    --border: #dfe4ec;
+    --accent: #1657d0;
+    --accent-2: #7a3df0;
+    --accent-soft: #eaf0ff;
+    --hero-grad: linear-gradient(135deg, #eef3ff 0%, #f7eefb 50%, #fff4ec 100%);
   }
   html { box-sizing: border-box; }
   *, *::before, *::after { box-sizing: inherit; }
@@ -25,179 +28,292 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: var(--fg);
     background: var(--bg);
-    line-height: 1.55;
+    line-height: 1.6;
     font-size: 17px;
+    -webkit-font-smoothing: antialiased;
   }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 48px 24px 80px; }
-  header { text-align: center; margin-bottom: 32px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+  /* HERO */
+  .hero {
+    background: var(--hero-grad);
+    border-bottom: 1px solid var(--border);
+    padding: 64px 0 40px;
+    text-align: center;
+  }
   .eyebrow {
     display: inline-block;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.16em;
     font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid #c6d6f5;
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 18px;
   }
   h1 {
-    font-size: 32px;
-    line-height: 1.2;
-    margin: 0 0 18px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
+    font-size: 40px;
+    line-height: 1.15;
+    margin: 0 auto 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    max-width: 820px;
+    background: linear-gradient(90deg, #0f2dad 0%, #6b1ed6 60%, #d6411e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
   .authors {
     color: var(--fg);
     font-size: 17px;
-    margin: 6px 0 4px;
+    margin: 6px 0 2px;
   }
-  .authors .todo, .affil .todo { color: var(--muted); font-style: italic; }
-  .affil { color: var(--muted); font-size: 15px; margin: 0 0 22px; }
+  .authors strong { font-weight: 600; }
+  .todo { color: var(--muted); font-style: italic; }
+  .affil { color: var(--muted); font-size: 14px; margin: 0 0 22px; }
   .actions {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    margin: 18px 0 8px;
+    margin: 14px 0 4px;
   }
   .btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 9px 16px;
+    padding: 10px 18px;
     border: 1px solid var(--border);
     border-radius: 999px;
-    background: var(--bg-soft);
+    background: #fff;
     color: var(--fg);
     font-weight: 500;
     font-size: 14px;
+    box-shadow: 0 1px 2px rgba(20,30,60,0.04);
+    transition: transform 0.08s ease, box-shadow 0.12s ease, border-color 0.12s ease;
   }
-  .btn:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(20,30,60,0.08); border-color: var(--accent); color: var(--accent); text-decoration: none; }
   .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .btn.primary:hover { background: #094a8c; color: #fff; }
-  section { margin-top: 40px; }
+  .btn.primary:hover { background: #0c45ab; color: #fff; border-color: #0c45ab; }
+  .btn .ico { width: 16px; height: 16px; display: inline-block; }
+
+  /* TEASER */
+  .teaser {
+    max-width: 980px;
+    margin: 28px auto -36px;
+    padding: 0 24px;
+    transform: translateY(36px);
+  }
+  .teaser-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 14px;
+    box-shadow: 0 10px 40px rgba(20,30,60,0.08);
+  }
+  .teaser-card img { display: block; width: 100%; height: auto; border-radius: 10px; }
+  .teaser-cap { color: var(--muted); font-size: 13px; margin: 10px 4px 2px; text-align: center; }
+
+  main { padding: 92px 0 80px; }
+  section { margin-top: 56px; }
+  section:first-of-type { margin-top: 0; }
   h2 {
-    font-size: 20px;
-    margin: 0 0 12px;
-    padding-bottom: 6px;
+    font-size: 24px;
+    margin: 0 0 14px;
+    padding-bottom: 8px;
     border-bottom: 1px solid var(--border);
-    letter-spacing: -0.005em;
+    letter-spacing: -0.01em;
+    font-weight: 700;
   }
-  p { margin: 0 0 12px; }
-  ul { margin: 0 0 12px; padding-left: 22px; }
+  h3 { font-size: 17px; margin: 18px 0 8px; font-weight: 600; }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 14px; padding-left: 22px; }
   li { margin-bottom: 4px; }
+
   .tldr {
-    background: var(--bg-soft);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    padding: 14px 18px;
-    border-radius: 6px;
-    font-size: 16px;
+    background: linear-gradient(180deg, #f6f8ff 0%, #fbf6ff 100%);
+    border: 1px solid #d6def7;
+    border-left: 4px solid var(--accent);
+    padding: 18px 22px;
+    border-radius: 10px;
+    font-size: 16.5px;
   }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 8px 0 4px;
-    font-size: 14px;
-  }
-  th, td {
-    border-bottom: 1px solid var(--border);
-    padding: 8px 10px;
-    text-align: right;
-  }
-  th:first-child, td:first-child { text-align: left; }
-  thead th { font-weight: 600; background: var(--bg-soft); }
-  tbody tr:last-child td { border-bottom: 1px solid var(--border); }
-  caption {
-    caption-side: bottom;
-    text-align: left;
-    color: var(--muted);
-    font-size: 13px;
-    padding-top: 6px;
-  }
-  pre {
-    background: var(--bg-soft);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 14px 16px;
-    overflow-x: auto;
-    font-size: 13px;
-    line-height: 1.45;
-  }
-  code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
-  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 6px 0 4px; }
+  .tldr strong { color: var(--accent); }
+
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin: 8px 0 4px; }
   .kpi {
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 14px 16px;
-    background: var(--bg-soft);
+    border-radius: 12px;
+    padding: 18px 18px;
+    background: linear-gradient(180deg, #ffffff 0%, #f7f9ff 100%);
+    text-align: left;
   }
-  .kpi .n { display: block; font-size: 22px; font-weight: 700; color: var(--accent); line-height: 1.1; }
-  .kpi .l { color: var(--muted); font-size: 13px; margin-top: 4px; display: block; }
+  .kpi .n { display: block; font-size: 28px; font-weight: 800; color: var(--accent); line-height: 1.1; letter-spacing: -0.01em; }
+  .kpi .l { color: var(--muted); font-size: 13px; margin-top: 6px; display: block; }
+
+  figure { margin: 18px 0 8px; }
+  figure img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); background: #fff; }
+  figcaption { color: var(--muted); font-size: 13.5px; margin-top: 10px; text-align: center; }
+  .figs-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .figs-2 figure { margin: 0; }
+  @media (max-width: 720px) { .figs-2 { grid-template-columns: 1fr; } }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 4px; font-size: 14px; }
+  th, td { border-bottom: 1px solid var(--border); padding: 9px 10px; text-align: right; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { font-weight: 600; background: var(--bg-soft); }
+  caption { caption-side: bottom; text-align: left; color: var(--muted); font-size: 13px; padding-top: 6px; }
+  tbody tr:hover { background: #fafbfe; }
+
+  pre {
+    background: #0e1320;
+    color: #e7ebf5;
+    border-radius: 10px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  pre code { color: inherit; }
+  p code, li code { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-size: 0.92em; }
+  code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+
   footer {
-    margin-top: 60px;
-    padding-top: 18px;
+    margin-top: 64px;
+    padding: 28px 0 36px;
     border-top: 1px solid var(--border);
     color: var(--muted);
     font-size: 13px;
     text-align: center;
+    background: var(--bg-soft);
   }
-  @media (max-width: 600px) {
-    h1 { font-size: 26px; }
-    .wrap { padding: 32px 18px 60px; }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 30px; }
+    .hero { padding: 44px 0 28px; }
+    main { padding: 80px 0 60px; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<header>
-  <span class="eyebrow">CIRCUS · benchmark audit &amp; clean subset</span>
-  <h1>Do Composed Image Retrieval Benchmarks Require Multimodal Composition?</h1>
-  <p class="authors">
-    <strong>Matteo Attimonelli</strong><span class="todo"> · &lt;co-authors here&gt;</span>
-  </p>
-  <p class="affil"><span class="todo">&lt;Affiliation(s) here&gt;</span></p>
-
-  <div class="actions">
-    <!-- Replace href="#" with the arXiv / OpenReview link when available -->
-    <a class="btn primary" href="#"><span>Paper</span></a>
-    <a class="btn" href="https://github.com/matteoattimonelli/CIRCUS"><span>Code</span></a>
-    <a class="btn" href="https://github.com/matteoattimonelli/CIRCUS/tree/main/shortcut_free_subsets"><span>Shortcut-free subset</span></a>
-    <a class="btn" href="https://github.com/matteoattimonelli/CIRCUS/tree/main/final_dataset"><span>Validated subset</span></a>
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">CIRCUS · Benchmark audit &amp; clean subsets</span>
+    <h1>Do Composed Image Retrieval Benchmarks Require Multimodal Composition?</h1>
+    <p class="authors">
+      <strong>Matteo Attimonelli</strong><span class="todo"> · &lt;co-authors here&gt;</span>
+    </p>
+    <p class="affil"><span class="todo">&lt;Affiliation(s) here&gt;</span></p>
+    <div class="actions">
+      <!-- Replace href="#" with the arXiv / OpenReview link when available -->
+      <a class="btn primary" href="#">📄 Paper</a>
+      <a class="btn" href="https://github.com/matteoattimonelli/CIRCUS">💻 Code</a>
+      <a class="btn" href="https://github.com/matteoattimonelli/CIRCUS/tree/master/shortcut_free_subsets">📦 Shortcut-free subset</a>
+      <a class="btn" href="https://github.com/matteoattimonelli/CIRCUS/tree/master/final_dataset">✅ Validated subset</a>
+      <a class="btn" href="https://github.com/matteoattimonelli/CIRCUS/tree/master/croissant">🥐 Croissant</a>
+    </div>
   </div>
-</header>
+</div>
+
+<div class="teaser">
+  <figure class="teaser-card">
+    <img src="assets/shortcuts_gallery.png" alt="A gallery of CIR queries solvable from a single modality — the reference image alone or the modification text alone." />
+    <figcaption class="teaser-cap">Many “composed” queries in CIRR, FashionIQ, LaSCo, and CIRCO are solvable from <em>one</em> modality. CIRCUS finds them and removes them.</figcaption>
+  </figure>
+</div>
+
+<main>
+<div class="wrap">
 
 <section>
   <p class="tldr">
-    <strong>TL;DR.</strong> Across the four standard Composed Image Retrieval (CIR) benchmarks &mdash;
-    CIRR, FashionIQ, LaSCo, and CIRCO &mdash; a large fraction of test queries can be solved
-    by retrievers that see only the reference image <em>or</em> only the modification text.
-    We call these <em>shortcut-solvable</em> queries. CIRCUS audits all 11 public retrievers
-    used in our study, removes the shortcuts, and releases two cleaner evaluation sets so
-    future work can measure the part of the task that actually requires multimodal composition.
+    <strong>TL;DR.</strong> Composed Image Retrieval is supposed to require both a reference image
+    <em>and</em> a modification text. Across the four standard CIR benchmarks &mdash; CIRR, FashionIQ,
+    LaSCo, and CIRCO &mdash; we audit 11 retrievers (9 open-source + 2 commercial APIs) and find
+    that a large share of test queries can be solved with only the image <em>or</em> only the text.
+    CIRCUS releases the audit, the cleaned <strong>shortcut-free</strong> queries, and a
+    human-<strong>validated</strong> subset of 1&nbsp;689 queries that survived both filters.
   </p>
 </section>
 
 <section>
-  <h2>What this release ships</h2>
-  <ul>
-    <li><strong>A reproducible shortcut audit</strong> &mdash; for every test query in CIRR, FashionIQ, LaSCo, CIRCO, the rank of the ground-truth target under multimodal, text-only, and image-only inputs, aggregated across 11 retrievers (9 open-source + 2 commercial APIs).</li>
-    <li><strong>Dataset 1 &mdash; the shortcut-free subset</strong> (<code>shortcut_free_subsets/</code>): queries that no retriever could solve unimodally at <em>K</em>&nbsp;=&nbsp;10.</li>
-    <li><strong>Dataset 2 &mdash; the human-validated subset</strong> (<code>final_dataset/</code>): the subset of shortcut-free queries that human annotators judged to be well-formed CIR instances (≥ majority of annotators).</li>
-    <li><strong>The full reproduction pipeline</strong>: per-retriever encoders, two unimodal ablation configs, the aggregator that turns ranks into audit labels, and the re-evaluator that computes Recall@10 and the Composition Gap on either subset.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Headline numbers</h2>
+  <h2>By the numbers</h2>
   <div class="kpis">
     <div class="kpi"><span class="n">11</span><span class="l">retrievers audited</span></div>
     <div class="kpi"><span class="n">4</span><span class="l">CIR benchmarks</span></div>
     <div class="kpi"><span class="n">23&nbsp;228</span><span class="l">shortcut-free queries</span></div>
     <div class="kpi"><span class="n">1&nbsp;689</span><span class="l">human-validated queries</span></div>
   </div>
+</section>
+
+<section>
+  <h2>What does a shortcut look like?</h2>
+  <p>
+    Two qualitative galleries from CIRR. <em>Left</em>: the retriever ignores the text and still
+    finds the target from the reference image alone. <em>Right</em>: the retriever ignores the
+    image and still finds the target from the modification text alone. Either of these makes
+    the “composed” task degenerate.
+  </p>
+  <div class="figs-2">
+    <figure>
+      <img src="assets/cirr_image_only_examples.png" alt="CIRR queries that a retriever solves using only the reference image." />
+      <figcaption>Image-only shortcut — text is ignored, target retrieved from the reference alone.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/cirr_text_only_examples.png" alt="CIRR queries that a retriever solves using only the modification text." />
+      <figcaption>Text-only shortcut — reference image is ignored, target retrieved from the text alone.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <h2>How CIRCUS works</h2>
+  <ol>
+    <li><strong>Encode each query three times</strong> for every retriever in the pool: with both modalities (the standard CIR setting), with only the text (image zeroed out), and with only the image (text dropped).</li>
+    <li><strong>Record the rank</strong> of the ground-truth target under each modality.</li>
+    <li><strong>Aggregate across the 11-retriever pool</strong> and assign each query a label:
+      <ul>
+        <li><code>composition_required</code> — at least one retriever solves it with both modalities; none solves it unimodally.</li>
+        <li><code>unresolved</code> — no retriever solves it under any modality.</li>
+        <li><code>shortcut_solvable</code> — at least one retriever solves it with only image or only text. <em>Excluded.</em></li>
+        <li><code>shortcut_free</code> — the union of the first two (kept).</li>
+      </ul>
+    </li>
+    <li><strong>Validate by humans</strong>: re-show the surviving queries to multiple annotators using the four-category rubric below. Queries kept only when a majority of annotators marked them as well-formed CIR.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Validity rubric (used during human validation)</h2>
+  <figure>
+    <img src="assets/validity_gallery_no_broad.png" alt="Side-by-side examples of the validity categories: valid, invalid text, invalid image, invalid target." />
+    <figcaption>Four categories shown to annotators: <code>VALIDATED</code>, <code>INVALID_TEXT_QUERY</code>, <code>INVALID_IMAGE_QUERY</code>, <code>INVALID_TARGET_IMAGE</code> (plus <code>QUERY_TOO_BROAD</code>).</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/annotation_interface.png" alt="Screenshot of the annotation interface shown to annotators." />
+    <figcaption>The annotation interface used by every annotator. The full rubric is in <code>annotations/annotation_instructions.md</code>.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Inter-annotator agreement</h2>
+  <div class="figs-2">
+    <figure>
+      <img src="assets/kappa_heatmap.png" alt="Pairwise Cohen's κ heatmap across annotators." />
+      <figcaption>Pairwise Cohen's κ across the annotator pool.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/signature_agreement_heatmap.png" alt="Pairwise full-signature agreement heatmap across annotators." />
+      <figcaption>Pairwise full-signature agreement (same set of category flags) across annotators.</figcaption>
+    </figure>
+  </div>
+  <p>The full write-up &mdash; including Krippendorff's α &mdash; is in <a href="https://github.com/matteoattimonelli/CIRCUS/blob/master/annotations/agreement_report.md"><code>annotations/agreement_report.md</code></a>.</p>
 </section>
 
 <section>
@@ -226,7 +342,7 @@
 
 <section>
   <h2>Human-validated subset (Table 2)</h2>
-  <p>The subset of shortcut-free queries that survived human validation. For CIRR and CIRCO the full shortcut-free residue was audited; for FashionIQ and LaSCo a stratified sample of 1&nbsp;000&nbsp;+&nbsp;1&nbsp;000 was audited.</p>
+  <p>For CIRR and CIRCO the full shortcut-free residue was audited; for FashionIQ and LaSCo a stratified sample of 1&nbsp;000&nbsp;+&nbsp;1&nbsp;000 was audited.</p>
   <table>
     <thead>
       <tr>
@@ -249,17 +365,16 @@
 </section>
 
 <section>
-  <h2>Headline metric: Recall@10 and the Composition Gap</h2>
+  <h2>Headline metric &mdash; Recall@10 and the Composition Gap</h2>
   <p>
-    The headline metric is <strong>Recall@10</strong>. When a retriever is also run under the
-    two unimodal ablations (image-only zero-image and text-only drop-text), we report the
-    <strong>Composition Gap</strong>:
+    The headline metric is <strong>Recall@10</strong>. When the same retriever is also evaluated under the two unimodal ablations
+    (image-only zero-image and text-only drop-text), we report the <strong>Composition Gap</strong>:
   </p>
-  <pre><code>Composition Gap = R@10(multimodal) − max( R@10(text_only_drop_text), R@10(image_only_zero_image) )</code></pre>
+  <pre><code>Composition Gap = R@10(multimodal) − max( R@10(text-only), R@10(image-only) )</code></pre>
   <p>
-    A small Composition Gap means a retriever does not benefit much from seeing both
-    modalities &mdash; either the model is not actually composing, or the benchmark does not
-    require it. CIRCUS lets you measure both on cleaner subsets.
+    A small Composition Gap means the retriever does not actually benefit from seeing both modalities &mdash;
+    either the model is not composing, or the benchmark does not require composition.
+    CIRCUS lets you measure both, on cleaner subsets.
   </p>
 </section>
 
@@ -276,11 +391,11 @@
 <section>
   <h2>Reproduce in five stages</h2>
   <ol>
-    <li><strong>Envs</strong> &mdash; one conda env per retriever family (<code>envs/create_*.sh</code>).</li>
-    <li><strong>Per-(dataset, retriever) retrieval</strong> &mdash; <code>retrieval/run_generate_retrieval_data*.sh</code> writes one JSON per pair with multimodal / text-only / image-only ranks.</li>
-    <li><strong>Aggregate</strong> &mdash; <code>retrieval/aggregate_retrieval_data.py</code> turns ranks into the shortcut-audit labels (already shipped under <code>shortcut_audit/</code>).</li>
-    <li><strong>Validated subset</strong> &mdash; <code>final_dataset/build_validated_subsets.py</code> derives <code>final_dataset/query_jsonl/</code> from <code>annotations/users/</code>.</li>
-    <li><strong>Re-evaluation</strong> &mdash; <code>subset_evaluation/run_subset_eval.sh</code> writes Recall@10 (and the two ablations, when requested) per <code>(dataset, subset, retriever)</code> to <code>subset_evaluation/logs/results.jsonl</code>.</li>
+    <li><strong>Envs</strong> — one conda env per retriever family (<code>envs/create_*.sh</code>).</li>
+    <li><strong>Per-(dataset, retriever) retrieval</strong> — <code>retrieval/run_generate_retrieval_data*.sh</code> writes one JSON per pair with multimodal / text-only / image-only ranks.</li>
+    <li><strong>Aggregate</strong> — <code>retrieval/aggregate_retrieval_data.py</code> turns ranks into the shortcut-audit labels (already shipped under <code>shortcut_audit/</code>).</li>
+    <li><strong>Validated subset</strong> — <code>final_dataset/build_validated_subsets.py</code> derives <code>final_dataset/query_jsonl/</code> from <code>annotations/users/</code>.</li>
+    <li><strong>Re-evaluation</strong> — <code>subset_evaluation/run_subset_eval.sh</code> writes Recall@10 (and the two ablations, when requested) per <code>(dataset, subset, retriever)</code> to <code>subset_evaluation/logs/results.jsonl</code>.</li>
   </ol>
   <p>Full step-by-step instructions are in the <a href="https://github.com/matteoattimonelli/CIRCUS#reproduction-pipeline">repository README</a>.</p>
 </section>
@@ -295,10 +410,15 @@
 }</code></pre>
 </section>
 
+</div>
+</main>
+
 <footer>
-  <p>Code: <a href="https://github.com/matteoattimonelli/CIRCUS">github.com/matteoattimonelli/CIRCUS</a> &middot; Maintainer: Matteo Attimonelli</p>
+  <div class="wrap">
+    Code: <a href="https://github.com/matteoattimonelli/CIRCUS">github.com/matteoattimonelli/CIRCUS</a>
+    &middot; Maintainer: Matteo Attimonelli
+  </div>
 </footer>
 
-</div>
 </body>
 </html>
