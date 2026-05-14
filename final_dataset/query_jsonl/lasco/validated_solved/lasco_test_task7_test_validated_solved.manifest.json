@@ -1,0 +1,8 @@
+{
+  "dataset": "lasco",
+  "hidden_category": "composition_required",
+  "selected_queries": 452,
+  "source_query_jsonl": "<path_to_lasco_mbeir>/query/test/lasco_test_task7_test.jsonl",
+  "repo_query_jsonl": "<path_to_repo>/final_dataset/query_jsonl/lasco/lasco_test_task7_test_validated_solved.jsonl",
+  "query_index_allowlist": "<path_to_repo>/final_dataset/query_indices/lasco_validated_solved_query_indices.json"
+}

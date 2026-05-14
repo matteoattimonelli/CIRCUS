@@ -1,0 +1,1154 @@
+{
+  "study_root": "<path_to_repo>/exploration/study_multimodal_validity_agreement",
+  "all_annotators": [
+    "annotator_01",
+    "annotator_02",
+    "annotator_03",
+    "annotator_04",
+    "annotator_05",
+    "annotator_06",
+    "annotator_10",
+    "annotator_07",
+    "annotator_08"
+  ],
+  "blind_users": [
+    "annotator_01",
+    "annotator_02",
+    "annotator_04",
+    "annotator_05",
+    "annotator_06",
+    "annotator_10",
+    "annotator_07"
+  ],
+  "sample_summary": {
+    "n_items": 50,
+    "dataset_counts": {
+      "circo": 7,
+      "cirr": 15,
+      "fashioniq": 14,
+      "lasco": 14
+    },
+    "hidden_category_counts": {
+      "composition_required": 28,
+      "unresolved": 22
+    },
+    "dataset_hidden_category_counts": {
+      "circo::composition_required": 6,
+      "circo::unresolved": 1,
+      "cirr::composition_required": 8,
+      "cirr::unresolved": 7,
+      "fashioniq::composition_required": 7,
+      "fashioniq::unresolved": 7,
+      "lasco::composition_required": 7,
+      "lasco::unresolved": 7
+    }
+  },
+  "binary_valid_invalid": {
+    "n_items": 50,
+    "n_raters": 9,
+    "exact_agreement_rate": 0.22,
+    "exact_invalid_signature_rate": 0.35294117647058826,
+    "unanimous_valid_invalid_rate": 0.44,
+    "fleiss_kappa": 0.45553684120757293,
+    "krippendorff_alpha_nominal": 0.45674675933822273,
+    "pairwise_cohen": {
+      "count": 36,
+      "mean": 0.45783993446145665,
+      "median": 0.44253203289347864,
+      "min": 0.28,
+      "max": 0.7564935064935064
+    },
+    "pairwise_cohen_by_pair": {
+      "annotator_01__annotator_02": 0.39560439560439564,
+      "annotator_01__annotator_04": 0.326750448833034,
+      "annotator_01__annotator_05": 0.3518518518518517,
+      "annotator_01__annotator_06": 0.32000000000000006,
+      "annotator_01__annotator_10": 0.30313588850174217,
+      "annotator_01__annotator_10": 0.30313588850174217,
+      "annotator_01__annotator_07": 0.5433789954337899,
+      "annotator_01__annotator_08": 0.43762781186094074,
+      "annotator_02__annotator_04": 0.4017094017094016,
+      "annotator_02__annotator_05": 0.3478260869565216,
+      "annotator_02__annotator_06": 0.28,
+      "annotator_02__annotator_10": 0.7058823529411764,
+      "annotator_02__annotator_10": 0.45378151260504196,
+      "annotator_02__annotator_07": 0.5631067961165047,
+      "annotator_02__annotator_08": 0.3577981651376147,
+      "annotator_04__annotator_05": 0.5454545454545455,
+      "annotator_04__annotator_06": 0.52,
+      "annotator_04__annotator_10": 0.4698205546492658,
+      "annotator_04__annotator_10": 0.4698205546492658,
+      "annotator_04__annotator_07": 0.44061962134251287,
+      "annotator_04__annotator_08": 0.40978077571669475,
+      "annotator_05__annotator_06": 0.56,
+      "annotator_05__annotator_10": 0.5081967213114754,
+      "annotator_05__annotator_10": 0.5901639344262296,
+      "annotator_05__annotator_07": 0.6491228070175438,
+      "annotator_05__annotator_08": 0.44444444444444436,
+      "annotator_06__annotator_10": 0.48,
+      "annotator_06__annotator_10": 0.48,
+      "annotator_06__annotator_07": 0.32000000000000006,
+      "annotator_06__annotator_08": 0.3600000000000001,
+      "annotator_10__annotator_10": 0.7564935064935064,
+      "annotator_10__annotator_07": 0.6621621621621621,
+      "annotator_10__annotator_08": 0.37603993344425934,
+      "annotator_10__annotator_07": 0.5777027027027029,
+      "annotator_10__annotator_08": 0.37603993344425934,
+      "annotator_07__annotator_08": 0.39478584729981375
+    }
+  },
+  "per_flag_agreement": {
+    "INVALID_TEXT_QUERY": {
+      "fleiss_kappa": 0.10871478873239517,
+      "krippendorff_alpha_nominal": 0.11069542253521125,
+      "pairwise_cohen": {
+        "count": 36,
+        "mean": 0.11472888823379664,
+        "median": -0.04166666666666643,
+        "min": -0.08695652173913067,
+        "max": 0.4791666666666661
+      },
+      "positive_rate": 0.05333333333333334
+    },
+    "INVALID_IMAGE_QUERY": {
+      "fleiss_kappa": -0.004464285714277313,
+      "krippendorff_alpha_nominal": -0.0022321428571427937,
+      "pairwise_cohen": {
+        "count": 36,
+        "mean": 0.7777777777777778,
+        "median": 1.0,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "positive_rate": 0.0044444444444444444
+    },
+    "INVALID_TARGET_IMAGE": {
+      "fleiss_kappa": 0.14814814814814792,
+      "krippendorff_alpha_nominal": 0.15004115226337444,
+      "pairwise_cohen": {
+        "count": 36,
+        "mean": 0.15072997432130306,
+        "median": 0.14756486621055928,
+        "min": -0.09170305676855788,
+        "max": 0.5454545454545451
+      },
+      "positive_rate": 0.1
+    },
+    "QUERY_TOO_BROAD": {
+      "fleiss_kappa": 0.44665573640960804,
+      "krippendorff_alpha_nominal": 0.4478853903286979,
+      "pairwise_cohen": {
+        "count": 36,
+        "mean": 0.4533309885984159,
+        "median": 0.4491021671826625,
+        "min": 0.2694805194805194,
+        "max": 0.658119658119658
+      },
+      "positive_rate": 0.5022222222222222
+    }
+  },
+  "signature_alpha_nominal": 0.369372098512865,
+  "item_level_rows": [
+    {
+      "dataset": "circo",
+      "query_idx": 44,
+      "hidden_category": "composition_required",
+      "valid_votes": 4,
+      "invalid_votes": 5,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "VALID",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "circo",
+      "query_idx": 55,
+      "hidden_category": "composition_required",
+      "valid_votes": 4,
+      "invalid_votes": 5,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "circo",
+      "query_idx": 85,
+      "hidden_category": "composition_required",
+      "valid_votes": 9,
+      "invalid_votes": 0,
+      "signatures": {
+        "annotator_01": "VALID",
+        "annotator_02": "VALID",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "VALID",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "circo",
+      "query_idx": 107,
+      "hidden_category": "composition_required",
+      "valid_votes": 6,
+      "invalid_votes": 3,
+      "signatures": {
+        "annotator_01": "INVALID_TEXT_QUERY",
+        "annotator_02": "VALID",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "INVALID_TARGET_IMAGE",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "VALID",
+        "annotator_08": "INVALID_TEXT_QUERY"
+      }
+    },
+    {
+      "dataset": "circo",
+      "query_idx": 115,
+      "hidden_category": "composition_required",
+      "valid_votes": 5,
+      "invalid_votes": 4,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "VALID",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "circo",
+      "query_idx": 157,
+      "hidden_category": "unresolved",
+      "valid_votes": 9,
+      "invalid_votes": 0,
+      "signatures": {
+        "annotator_01": "VALID",
+        "annotator_02": "VALID",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "VALID",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "circo",
+      "query_idx": 204,
+      "hidden_category": "composition_required",
+      "valid_votes": 9,
+      "invalid_votes": 0,
+      "signatures": {
+        "annotator_01": "VALID",
+        "annotator_02": "VALID",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "VALID",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 1287,
+      "hidden_category": "unresolved",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "INVALID_TARGET_IMAGE+QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "INVALID_TARGET_IMAGE",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 1320,
+      "hidden_category": "composition_required",
+      "valid_votes": 6,
+      "invalid_votes": 3,
+      "signatures": {
+        "annotator_01": "INVALID_TARGET_IMAGE",
+        "annotator_02": "INVALID_TARGET_IMAGE",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "INVALID_TARGET_IMAGE",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "VALID",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 1590,
+      "hidden_category": "unresolved",
+      "valid_votes": 5,
+      "invalid_votes": 4,
+      "signatures": {
+        "annotator_01": "VALID",
+        "annotator_02": "INVALID_TARGET_IMAGE",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "INVALID_TARGET_IMAGE",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 1852,
+      "hidden_category": "composition_required",
+      "valid_votes": 5,
+      "invalid_votes": 4,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 2157,
+      "hidden_category": "unresolved",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "INVALID_TARGET_IMAGE+QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "QUERY_TOO_BROAD",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "INVALID_TARGET_IMAGE",
+        "annotator_08": "INVALID_TARGET_IMAGE"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 2291,
+      "hidden_category": "unresolved",
+      "valid_votes": 6,
+      "invalid_votes": 3,
+      "signatures": {
+        "annotator_01": "INVALID_TARGET_IMAGE",
+        "annotator_02": "VALID",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "INVALID_TEXT_QUERY",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "VALID",
+        "annotator_08": "INVALID_TARGET_IMAGE"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 2354,
+      "hidden_category": "unresolved",
+      "valid_votes": 6,
+      "invalid_votes": 3,
+      "signatures": {
+        "annotator_01": "VALID",
+        "annotator_02": "INVALID_TEXT_QUERY",
+        "annotator_03": "INVALID_TARGET_IMAGE",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "VALID",
+        "annotator_08": "INVALID_TEXT_QUERY"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 2425,
+      "hidden_category": "composition_required",
+      "valid_votes": 9,
+      "invalid_votes": 0,
+      "signatures": {
+        "annotator_01": "VALID",
+        "annotator_02": "VALID",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "VALID",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 2677,
+      "hidden_category": "unresolved",
+      "valid_votes": 1,
+      "invalid_votes": 8,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "QUERY_TOO_BROAD",
+        "annotator_06": "INVALID_TEXT_QUERY",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 2698,
+      "hidden_category": "composition_required",
+      "valid_votes": 5,
+      "invalid_votes": 4,
+      "signatures": {
+        "annotator_01": "INVALID_TEXT_QUERY+QUERY_TOO_BROAD",
+        "annotator_02": "VALID",
+        "annotator_03": "INVALID_TEXT_QUERY+QUERY_TOO_BROAD",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "INVALID_TEXT_QUERY",
+        "annotator_07": "VALID",
+        "annotator_08": "INVALID_UNSPECIFIED"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 3075,
+      "hidden_category": "composition_required",
+      "valid_votes": 3,
+      "invalid_votes": 6,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "VALID",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "QUERY_TOO_BROAD",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 3775,
+      "hidden_category": "composition_required",
+      "valid_votes": 9,
+      "invalid_votes": 0,
+      "signatures": {
+        "annotator_01": "VALID",
+        "annotator_02": "VALID",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "VALID",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 3909,
+      "hidden_category": "composition_required",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "QUERY_TOO_BROAD",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 3985,
+      "hidden_category": "composition_required",
+      "valid_votes": 4,
+      "invalid_votes": 5,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "VALID",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "cirr",
+      "query_idx": 4077,
+      "hidden_category": "unresolved",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "INVALID_TARGET_IMAGE",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "INVALID_TARGET_IMAGE",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "INVALID_TARGET_IMAGE",
+        "annotator_06": "INVALID_TARGET_IMAGE",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "INVALID_TARGET_IMAGE",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "fashioniq",
+      "query_idx": 998,
+      "hidden_category": "unresolved",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "INVALID_TARGET_IMAGE",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "INVALID_TARGET_IMAGE"
+      }
+    },
+    {
+      "dataset": "fashioniq",
+      "query_idx": 1551,
+      "hidden_category": "unresolved",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "INVALID_TARGET_IMAGE",
+        "annotator_05": "QUERY_TOO_BROAD",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "fashioniq",
+      "query_idx": 2097,
+      "hidden_category": "unresolved",
+      "valid_votes": 2,
+      "invalid_votes": 7,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "VALID",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "VALID",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "fashioniq",
+      "query_idx": 2206,
+      "hidden_category": "composition_required",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "QUERY_TOO_BROAD",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "INVALID_TARGET_IMAGE"
+      }
+    },
+    {
+      "dataset": "fashioniq",
+      "query_idx": 3144,
+      "hidden_category": "unresolved",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "QUERY_TOO_BROAD",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "fashioniq",
+      "query_idx": 3586,
+      "hidden_category": "unresolved",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "INVALID_TARGET_IMAGE",
+        "annotator_02": "INVALID_TARGET_IMAGE",
+        "annotator_03": "INVALID_TARGET_IMAGE",
+        "annotator_04": "INVALID_TARGET_IMAGE+QUERY_TOO_BROAD",
+        "annotator_05": "INVALID_TARGET_IMAGE",
+        "annotator_06": "INVALID_TEXT_QUERY",
+        "annotator_10": "INVALID_TARGET_IMAGE",
+        "annotator_07": "INVALID_TEXT_QUERY",
+        "annotator_08": "INVALID_TEXT_QUERY"
+      }
+    },
+    {
+      "dataset": "fashioniq",
+      "query_idx": 3588,
+      "hidden_category": "unresolved",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "QUERY_TOO_BROAD",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "fashioniq",
+      "query_idx": 4008,
+      "hidden_category": "composition_required",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "QUERY_TOO_BROAD",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "fashioniq",
+      "query_idx": 4113,
+      "hidden_category": "composition_required",
+      "valid_votes": 4,
+      "invalid_votes": 5,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "VALID",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "INVALID_TARGET_IMAGE",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "fashioniq",
+      "query_idx": 4541,
+      "hidden_category": "composition_required",
+      "valid_votes": 8,
+      "invalid_votes": 1,
+      "signatures": {
+        "annotator_01": "VALID",
+        "annotator_02": "VALID",
+        "annotator_03": "VALID",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "VALID",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "fashioniq",
+      "query_idx": 5628,
+      "hidden_category": "unresolved",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "QUERY_TOO_BROAD",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "fashioniq",
+      "query_idx": 5715,
+      "hidden_category": "composition_required",
+      "valid_votes": 3,
+      "invalid_votes": 6,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "INVALID_TEXT_QUERY",
+        "annotator_10": "VALID",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "fashioniq",
+      "query_idx": 5835,
+      "hidden_category": "composition_required",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "QUERY_TOO_BROAD",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "fashioniq",
+      "query_idx": 5936,
+      "hidden_category": "composition_required",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "INVALID_TARGET_IMAGE",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "INVALID_TEXT_QUERY+QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "lasco",
+      "query_idx": 4811,
+      "hidden_category": "composition_required",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "INVALID_TARGET_IMAGE+QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "QUERY_TOO_BROAD",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "lasco",
+      "query_idx": 4962,
+      "hidden_category": "unresolved",
+      "valid_votes": 4,
+      "invalid_votes": 5,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "lasco",
+      "query_idx": 6693,
+      "hidden_category": "unresolved",
+      "valid_votes": 6,
+      "invalid_votes": 3,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "VALID",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "INVALID_TARGET_IMAGE",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "lasco",
+      "query_idx": 6857,
+      "hidden_category": "unresolved",
+      "valid_votes": 4,
+      "invalid_votes": 5,
+      "signatures": {
+        "annotator_01": "INVALID_TARGET_IMAGE",
+        "annotator_02": "INVALID_TEXT_QUERY",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "VALID",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "INVALID_TARGET_IMAGE"
+      }
+    },
+    {
+      "dataset": "lasco",
+      "query_idx": 8002,
+      "hidden_category": "unresolved",
+      "valid_votes": 1,
+      "invalid_votes": 8,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "VALID",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "lasco",
+      "query_idx": 10395,
+      "hidden_category": "composition_required",
+      "valid_votes": 5,
+      "invalid_votes": 4,
+      "signatures": {
+        "annotator_01": "INVALID_TARGET_IMAGE",
+        "annotator_02": "VALID",
+        "annotator_03": "VALID",
+        "annotator_04": "INVALID_TARGET_IMAGE",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "INVALID_TARGET_IMAGE"
+      }
+    },
+    {
+      "dataset": "lasco",
+      "query_idx": 13127,
+      "hidden_category": "unresolved",
+      "valid_votes": 1,
+      "invalid_votes": 8,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "VALID",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "QUERY_TOO_BROAD",
+        "annotator_06": "INVALID_TARGET_IMAGE",
+        "annotator_10": "INVALID_TARGET_IMAGE",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "lasco",
+      "query_idx": 18183,
+      "hidden_category": "composition_required",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "INVALID_TEXT_QUERY+INVALID_TARGET_IMAGE",
+        "annotator_05": "INVALID_TEXT_QUERY",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "INVALID_IMAGE_QUERY",
+        "annotator_07": "INVALID_TEXT_QUERY",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "lasco",
+      "query_idx": 18743,
+      "hidden_category": "unresolved",
+      "valid_votes": 2,
+      "invalid_votes": 7,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "VALID",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "VALID",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "INVALID_TARGET_IMAGE",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "INVALID_TARGET_IMAGE"
+      }
+    },
+    {
+      "dataset": "lasco",
+      "query_idx": 20000,
+      "hidden_category": "composition_required",
+      "valid_votes": 8,
+      "invalid_votes": 1,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "VALID",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "VALID",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "lasco",
+      "query_idx": 20345,
+      "hidden_category": "unresolved",
+      "valid_votes": 7,
+      "invalid_votes": 2,
+      "signatures": {
+        "annotator_01": "INVALID_TEXT_QUERY+QUERY_TOO_BROAD",
+        "annotator_02": "INVALID_TEXT_QUERY",
+        "annotator_03": "VALID",
+        "annotator_04": "VALID",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "VALID",
+        "annotator_07": "VALID",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "lasco",
+      "query_idx": 21049,
+      "hidden_category": "composition_required",
+      "valid_votes": 3,
+      "invalid_votes": 6,
+      "signatures": {
+        "annotator_01": "INVALID_TEXT_QUERY+QUERY_TOO_BROAD",
+        "annotator_02": "VALID",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "VALID",
+        "annotator_06": "VALID",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    },
+    {
+      "dataset": "lasco",
+      "query_idx": 24114,
+      "hidden_category": "composition_required",
+      "valid_votes": 1,
+      "invalid_votes": 8,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "QUERY_TOO_BROAD",
+        "annotator_04": "QUERY_TOO_BROAD",
+        "annotator_05": "QUERY_TOO_BROAD",
+        "annotator_06": "QUERY_TOO_BROAD",
+        "annotator_10": "INVALID_IMAGE_QUERY",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "VALID"
+      }
+    },
+    {
+      "dataset": "lasco",
+      "query_idx": 24761,
+      "hidden_category": "composition_required",
+      "valid_votes": 0,
+      "invalid_votes": 9,
+      "signatures": {
+        "annotator_01": "QUERY_TOO_BROAD",
+        "annotator_02": "QUERY_TOO_BROAD",
+        "annotator_03": "INVALID_TEXT_QUERY",
+        "annotator_04": "INVALID_TEXT_QUERY+INVALID_TARGET_IMAGE+QUERY_TOO_BROAD",
+        "annotator_05": "INVALID_TARGET_IMAGE",
+        "annotator_06": "INVALID_TEXT_QUERY",
+        "annotator_10": "QUERY_TOO_BROAD",
+        "annotator_07": "QUERY_TOO_BROAD",
+        "annotator_08": "QUERY_TOO_BROAD"
+      }
+    }
+  ],
+  "blind_only_summary": {
+    "users": [
+      "annotator_01",
+      "annotator_02",
+      "annotator_04",
+      "annotator_05",
+      "annotator_06",
+      "annotator_10",
+      "annotator_07"
+    ],
+    "binary_valid_invalid": {
+      "n_items": 50,
+      "n_raters": 7,
+      "exact_agreement_rate": 0.24,
+      "exact_invalid_signature_rate": 0.35,
+      "unanimous_valid_invalid_rate": 0.5,
+      "fleiss_kappa": 0.4791666666666667,
+      "krippendorff_alpha_nominal": 0.48065476190476186,
+      "pairwise_cohen": {
+        "count": 21,
+        "mean": 0.48340693345839936,
+        "median": 0.48,
+        "min": 0.28,
+        "max": 0.7564935064935064
+      },
+      "pairwise_cohen_by_pair": {
+        "annotator_01__annotator_02": 0.39560439560439564,
+        "annotator_01__annotator_05": 0.3518518518518517,
+        "annotator_01__annotator_06": 0.32000000000000006,
+        "annotator_01__annotator_10": 0.30313588850174217,
+        "annotator_01__annotator_10": 0.30313588850174217,
+        "annotator_01__annotator_07": 0.5433789954337899,
+        "annotator_02__annotator_05": 0.3478260869565216,
+        "annotator_02__annotator_06": 0.28,
+        "annotator_02__annotator_10": 0.7058823529411764,
+        "annotator_02__annotator_10": 0.45378151260504196,
+        "annotator_02__annotator_07": 0.5631067961165047,
+        "annotator_05__annotator_06": 0.56,
+        "annotator_05__annotator_10": 0.5081967213114754,
+        "annotator_05__annotator_10": 0.5901639344262296,
+        "annotator_05__annotator_07": 0.6491228070175438,
+        "annotator_06__annotator_10": 0.48,
+        "annotator_06__annotator_10": 0.48,
+        "annotator_06__annotator_07": 0.32000000000000006,
+        "annotator_10__annotator_10": 0.7564935064935064,
+        "annotator_10__annotator_07": 0.6621621621621621,
+        "annotator_10__annotator_07": 0.5777027027027029
+      }
+    },
+    "per_flag_agreement": {
+      "INVALID_TEXT_QUERY": {
+        "fleiss_kappa": 0.07245455027296284,
+        "krippendorff_alpha_nominal": 0.07510468012932625,
+        "pairwise_cohen": {
+          "count": 21,
+          "mean": 0.08519075291727911,
+          "median": -0.05042016806722475,
+          "min": -0.08695652173913067,
+          "max": 0.4791666666666661
+        },
+        "positive_rate": 0.054285714285714284
+      },
+      "INVALID_IMAGE_QUERY": {
+        "fleiss_kappa": -0.005747126436777005,
+        "krippendorff_alpha_nominal": -0.002873563218390718,
+        "pairwise_cohen": {
+          "count": 21,
+          "mean": 0.7142857142857143,
+          "median": 1.0,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "positive_rate": 0.005714285714285714
+      },
+      "INVALID_TARGET_IMAGE": {
+        "fleiss_kappa": 0.15240735430009822,
+        "krippendorff_alpha_nominal": 0.154829047573527,
+        "pairwise_cohen": {
+          "count": 21,
+          "mean": 0.1503855900188272,
+          "median": 0.1706161137440755,
+          "min": -0.060606060606060656,
+          "max": 0.4791666666666661
+        },
+        "positive_rate": 0.09428571428571429
+      },
+      "QUERY_TOO_BROAD": {
+        "fleiss_kappa": 0.4473303059013144,
+        "krippendorff_alpha_nominal": 0.4489093621701675,
+        "pairwise_cohen": {
+          "count": 21,
+          "mean": 0.45883971766850623,
+          "median": 0.45820433436532504,
+          "min": 0.2857142857142856,
+          "max": 0.658119658119658
+        },
+        "positive_rate": 0.5114285714285715
+      }
+    },
+    "signature_alpha_nominal": 0.38162903706822426
+  }
+}

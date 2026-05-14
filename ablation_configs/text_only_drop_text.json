@@ -1,0 +1,6 @@
+{
+  "seed": 123,
+  "ablations": [
+    { "name": "text_drop_all" }
+  ]
+}

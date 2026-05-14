@@ -1,0 +1,868 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "dct": "http://purl.org/dc/terms/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "containedIn": "cr:containedIn",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "excludes": "cr:excludes",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "samplingRate": "cr:samplingRate",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": [
+    "sc:Dataset"
+  ],
+  "name": "CIRCUS-CIRCO",
+  "description": "Derived metadata release for the CIRCO portion of the CIRCUS audit. It contains shortcut-free query trace records and human-validated query records, but no raw images.",
+  "url": "https://anonymous.4open.science/r/CIR-Benchmarks-Audit",
+  "creator": [
+    {
+      "@type": "sc:Organization",
+      "name": "Anonymized"
+    }
+  ],
+  "publisher": {
+    "@type": "sc:Organization",
+    "name": "Anonymized"
+  },
+  "citeAs": "Anonymous (2026). CIRCUS-CIRCO: derived metadata release for the CIRCUS benchmark audit. Version 0.1.0.",
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "conformsTo": [
+    "http://mlcommons.org/croissant/1.1",
+    "http://mlcommons.org/croissant/RAI/1.0"
+  ],
+  "version": "0.1.0",
+  "sdVersion": "0.1.0",
+  "dateCreated": "2026-05-04",
+  "datePublished": "2026-05-04",
+  "dateModified": "2026-05-04",
+  "isLiveDataset": false,
+  "inLanguage": "en",
+  "keywords": [
+    "composed image retrieval",
+    "evaluation benchmark",
+    "shortcut audit",
+    "human validation",
+    "circo"
+  ],
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "shortcut-free-csv",
+      "name": "circo_shortcut_free.csv",
+      "description": "Anonymized shortcut-free trace CSV for the circo slice of the release.",
+      "contentUrl": "https://anonymous.4open.science/r/CIR-Benchmarks-Audit/croissant/exports/circo_shortcut_free.csv",
+      "encodingFormat": "text/csv",
+      "contentSize": "13921 B",
+      "sha256": "4a73a15b1fa7c9a22464dda5a26b40bf5040c4eb1a8a232d112b43a8964586ad"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "validated-csv",
+      "name": "circo_validated.csv",
+      "description": "Anonymized validated-query CSV for the circo slice of the release.",
+      "contentUrl": "https://anonymous.4open.science/r/CIR-Benchmarks-Audit/croissant/exports/circo_validated.csv",
+      "encodingFormat": "text/csv",
+      "contentSize": "21916 B",
+      "sha256": "66df7f519bfc98cec8fd355c33e4388a4efc1773dfbf463f27f49a14bcf22288"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "shortcut_free_records",
+      "name": "Shortcut-free audit records",
+      "description": "One record per query in the shortcut-free union (composition-required or unresolved) after the cross-retriever shortcut audit.",
+      "key": [
+        {
+          "@id": "shortcut_free_records/query_idx"
+        }
+      ],
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/query_idx",
+          "description": "Dataset-internal query index.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "query_idx"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/query_id",
+          "description": "Dataset query identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "query_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/aggregate_label",
+          "description": "Aggregate shortcut audit label.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "aggregate_label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/aggregate_detail_label",
+          "description": "Shortcut audit sublabel.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "aggregate_detail_label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/legacy_category",
+          "description": "Legacy label retained for compatibility with earlier scripts.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "legacy_category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/query_text",
+          "description": "Natural-language modification.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "query_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/query_image_ref",
+          "description": "Relative image reference used by the benchmark loader.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "query_image_ref"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/primary_pos_cand_id",
+          "description": "Primary positive candidate identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "primary_pos_cand_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/rank_multimodal",
+          "description": "Best multimodal rank across retrievers.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "rank_multimodal"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/rank_text_only",
+          "description": "Best text-only rank across retrievers.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "rank_text_only"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/rank_image_only",
+          "description": "Best image-only rank across retrievers.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "rank_image_only"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/best_retriever_multimodal",
+          "description": "Retriever with best multimodal rank.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "best_retriever_multimodal"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/best_retriever_text_only",
+          "description": "Retriever with best text-only rank.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "best_retriever_text_only"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/best_retriever_image_only",
+          "description": "Retriever with best image-only rank.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "best_retriever_image_only"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/support_multimodal",
+          "description": "Number of retrievers hitting the target at K=10 under multimodal input.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "support_multimodal"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/support_text_only",
+          "description": "Number of retrievers hitting the target at K=10 under text-only input.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "support_text_only"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/support_image_only",
+          "description": "Number of retrievers hitting the target at K=10 under image-only input.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "support_image_only"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "shortcut_free_records/support_either_unimodal",
+          "description": "Number of retrievers hitting the target at K=10 under either unimodal condition.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "shortcut-free-csv"
+            },
+            "extract": {
+              "column": "support_either_unimodal"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "validated_records",
+      "name": "Validated query records",
+      "description": "One record per human-validated query retained in the release. These rows combine the automatic shortcut audit with the final validity decision.",
+      "key": [
+        {
+          "@id": "validated_records/query_idx"
+        }
+      ],
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/dataset",
+          "description": "Dataset name.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "dataset"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/hidden_category",
+          "description": "Original shortcut-free bucket from which the query was sampled.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "hidden_category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/validated",
+          "description": "Final validity decision.",
+          "dataType": "sc:Boolean",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "validated"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/query_idx",
+          "description": "Dataset-internal query index.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "query_idx"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/query_text",
+          "description": "Natural-language modification.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "query_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/full_text",
+          "description": "Instruction prompt text used by some retrievers.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "full_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/query_image_ref",
+          "description": "Relative reference-image path.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "query_image_ref"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/target_image_ref",
+          "description": "Relative target-image path.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "target_image_ref"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/aggregate_label",
+          "description": "Aggregate shortcut audit label.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "aggregate_label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/aggregate_detail_label",
+          "description": "Shortcut audit sublabel.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "aggregate_detail_label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/aggregate_legacy_category",
+          "description": "Legacy label retained for compatibility with earlier scripts.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "aggregate_legacy_category"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/best_retriever_multimodal",
+          "description": "Retriever with best multimodal rank.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "best_retriever_multimodal"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/best_retriever_text_only",
+          "description": "Retriever with best text-only rank.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "best_retriever_text_only"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/best_retriever_image_only",
+          "description": "Retriever with best image-only rank.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "best_retriever_image_only"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/support_multimodal",
+          "description": "Number of retrievers hitting the target at K=10 under multimodal input.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "support_multimodal"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/support_text_only",
+          "description": "Number of retrievers hitting the target at K=10 under text-only input.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "support_text_only"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/support_image_only",
+          "description": "Number of retrievers hitting the target at K=10 under image-only input.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "support_image_only"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/support_either_unimodal",
+          "description": "Number of retrievers hitting the target at K=10 under either unimodal condition.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "support_either_unimodal"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/rank_multimodal",
+          "description": "Best multimodal rank across retrievers.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "rank_multimodal"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/rank_text_only",
+          "description": "Best text-only rank across retrievers.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "rank_text_only"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/rank_image_only",
+          "description": "Best image-only rank across retrievers.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "rank_image_only"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/hit_multimodal",
+          "description": "Whether the target is retrieved at K=10 under multimodal input.",
+          "dataType": "sc:Boolean",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "hit_multimodal"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/hit_text_only",
+          "description": "Whether the target is retrieved at K=10 under text-only input.",
+          "dataType": "sc:Boolean",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "hit_text_only"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/hit_image_only",
+          "description": "Whether the target is retrieved at K=10 under image-only input.",
+          "dataType": "sc:Boolean",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "hit_image_only"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/invalid_text_query",
+          "description": "Whether the text instruction was flagged invalid.",
+          "dataType": "sc:Boolean",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "invalid_text_query"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/invalid_image_query",
+          "description": "Whether the reference image was flagged invalid.",
+          "dataType": "sc:Boolean",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "invalid_image_query"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/invalid_target_image",
+          "description": "Whether the target image was flagged invalid.",
+          "dataType": "sc:Boolean",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "invalid_target_image"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/query_too_broad",
+          "description": "Whether the query was flagged overly broad.",
+          "dataType": "sc:Boolean",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "query_too_broad"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "validated_records/note",
+          "description": "Optional free-text annotator note, preserved in anonymized form.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "validated-csv"
+            },
+            "extract": {
+              "column": "note"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "rai:dataCollection": "This release is derived from existing public composed image retrieval benchmarks. It was created by first running a cross-retriever shortcut audit over the official benchmark queries, then collecting structured human validity judgments over the shortcut-free residue.",
+  "rai:dataCollectionType": [
+    "Secondary Data Analysis",
+    "Manual Human Curator",
+    "Software Collection"
+  ],
+  "rai:dataCollectionRawData": "The source data are the official benchmark query files and image identifiers for the circo benchmark together with the corresponding retrieval outputs stored in this release.",
+  "rai:dataPreprocessingProtocol": [
+    "Aggregate per-retriever multimodal, text-only, and image-only ranks into a dataset-level shortcut audit using retrieval cutoff K=10.",
+    "Use random seed 123 for stochastic sampling and release construction steps.",
+    "Export the shortcut-free union as tabular trace records with relative image references only.",
+    "Filter the human-validation release to retained queries and flatten nested fields for Croissant-friendly CSV export."
+  ],
+  "rai:dataAnnotationProtocol": "Shortcut-free queries were inspected by trained annotators using a shared protocol. Annotators judged whether the reference image, textual edit, and target image form a coherent composed image retrieval instance, and if invalid they marked one or more of four reasons: invalid text query, invalid image query, invalid target image, or overly broad query.",
+  "rai:dataAnnotationPlatform": [
+    "An anonymized local annotation interface distributed in this repository under annotations/."
+  ],
+  "rai:annotationsPerItem": "Main-study items have one retained label per query after deduplication; a separate 50-query overlap subset was labeled by 9 annotators to estimate inter-annotator agreement.",
+  "rai:dataAnnotationAnalysis": "Binary validity agreement on the 50-query overlap subset is moderate rather than near-perfect (Fleiss' kappa about 0.456 in the paper), with disagreement concentrated on borderline cases and exact issue-taxonomy agreement lower than binary validity agreement.",
+  "rai:machineAnnotationTools": [
+    "e5_omni: E5-Omni (Haon-Chen/e5-omni-7B)",
+    "gme_qwen2vl_retriever_2: GME-Qwen2VL (Alibaba-NLP/gme-Qwen2-VL-7B-Instruct)",
+    "lamra: LamRA (code-kunkun/LamRA-Ret)",
+    "lamra_qwen25vl: LamRA-Qwen2.5VL (code-kunkun/LamRA-Ret-Qwen2.5VL-7b)",
+    "mmembed: MM-Embed (nvidia/MM-Embed)",
+    "qwen3vl2b_vllm: Qwen3-VL-2B (Qwen/Qwen3-VL-Embedding-2B)",
+    "qwen3vl8b_vllm: Qwen3-VL-8B (Qwen/Qwen3-VL-Embedding-8B)",
+    "rzen_embed: Rzen-Embed (qihoo360/RzenEmbed)",
+    "vlm2vec_v2: VLM2Vec-V2 (VLM2Vec/VLM2Vec-V2.0)",
+    "gemini_embedding_2: Gemini Embedding 2 (gemini-embedding-2-preview)",
+    "voyage_multimodal_35: Voyage MM-3.5 (voyage-multimodal-3.5)"
+  ],
+  "rai:dataUseCases": [
+    "Evaluating whether CIR benchmark queries require multimodal composition under a single-target retrieval objective.",
+    "Auditing benchmark quality, shortcut prevalence, and annotation validity in composed image retrieval.",
+    "Reproducing the paper's subset evaluations when combined with the official upstream datasets."
+  ],
+  "rai:dataLimitations": [
+    "The release does not contain raw images; users must separately obtain the official upstream datasets.",
+    "The validated split is a diagnostic benchmark slice, not a replacement for every possible retrieval objective.",
+    "For FashionIQ and LaSCo, human validation covers an audited shortcut-free sample rather than the full shortcut-free residue.",
+    "Overly broad queries may still be useful for relaxed retrieval settings, but are excluded here because they are ill-suited to precise single-target evaluation."
+  ],
+  "rai:dataBiases": [
+    "The release inherits any selection biases, demographic skew, and annotation artifacts present in the source benchmarks.",
+    "The validated subset reflects annotator judgments about query specificity and target correctness, so borderline cases remain subject to human interpretation.",
+    "The retriever pool used for the shortcut audit influences which queries are classified as shortcut-solvable versus shortcut-free."
+  ],
+  "rai:personalSensitiveInformation": "No new personal or sensitive information was collected for this release. The metadata may reference public images from upstream datasets that depict people, but the release itself contains only derived query-level metadata and relative image references.",
+  "rai:dataSocialImpact": "A positive impact is more reliable evaluation of multimodal composition by separating shortcut-heavy, ambiguous, and well-formed benchmark queries. Potential risks include over-interpreting the validated slice as the uniquely correct definition of the task, or ignoring source-dataset limitations that remain present despite filtering.",
+  "rai:hasSyntheticData": false,
+  "prov:wasDerivedFrom": [
+    {
+      "@id": "https://github.com/miccunifi/CIRCO"
+    },
+    {
+      "@id": "https://circo.micc.unifi.it/"
+    }
+  ],
+  "prov:wasGeneratedBy": [
+    {
+      "@type": "prov:Activity",
+      "sc:name": "Cross-retriever shortcut audit",
+      "sc:description": "Per-query multimodal, text-only, and image-only ranks were aggregated across the retriever pool using the scripts in retrieval/ and shortcut_audit/ to identify shortcut-free queries with retrieval cutoff K=10 and random seed 123."
+    },
+    {
+      "@type": "prov:Activity",
+      "sc:name": "Human validation and release export",
+      "sc:description": "Shortcut-free queries were validated by human annotators using the materials in annotations/. The final validated subset was built with final_dataset/build_validated_subsets.py and then flattened into anonymized CSV exports for Croissant."
+    }
+  ],
+  "sc:usageInfo": "The release redistributes only derived metadata. Underlying CIRCO and COCO assets remain governed by their original terms."
+}

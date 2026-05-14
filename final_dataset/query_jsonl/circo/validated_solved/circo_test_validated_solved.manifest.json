@@ -1,0 +1,8 @@
+{
+  "dataset": "circo",
+  "hidden_category": "composition_required",
+  "selected_queries": 39,
+  "source_query_jsonl": "<path_to_circo_mbeir>/query/test/circo_test.jsonl",
+  "repo_query_jsonl": "<path_to_repo>/final_dataset/query_jsonl/circo/circo_test_validated_solved.jsonl",
+  "query_index_allowlist": "<path_to_repo>/final_dataset/query_indices/circo_validated_solved_query_indices.json"
+}

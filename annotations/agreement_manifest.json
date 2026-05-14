@@ -1,0 +1,389 @@
+{
+  "study_name": "multimodal_validity_agreement",
+  "seed": 20260423,
+  "generated_at": "2026-04-23T11:38:18+00:00",
+  "source_study_dir": "<path_to_repo>/exploration/study_multimodal_validity",
+  "source_user": "annotator_03",
+  "reference_annotations": "<path_to_repo>/exploration/study_multimodal_validity_agreement/reference/selected_reference.json",
+  "users": [
+    "annotator_06",
+    "annotator_07",
+    "annotator_04",
+    "annotator_02",
+    "annotator_01",
+    "annotator_05",
+    "annotator_10"
+  ],
+  "datasets": {
+    "circo": {
+      "source_file_key": "circo/aggregated_best_rank_mm_any",
+      "source_filename": "retrieval_data_circo_task7_aggregated_best_rank_mm_any.json",
+      "source_path": "<path_to_repo>/exploration/retrieval_results_conda_cleaned_def/retrieval_data_circo_task7_aggregated_best_rank_mm_any.json",
+      "selection": {
+        "composition_required": {
+          "selection_mode": "agreement_from_reference_pool",
+          "selected_size": 6,
+          "sampling_file": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/circo_composition_required_agreement_seed20260423.json"
+        },
+        "unresolved": {
+          "selection_mode": "agreement_from_reference_pool",
+          "selected_size": 1,
+          "sampling_file": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/circo_unsolved_agreement_seed20260423.json"
+        }
+      }
+    },
+    "cirr": {
+      "source_file_key": "cirr/aggregated_best_rank_mm_any",
+      "source_filename": "retrieval_data_cirr_task7_aggregated_best_rank_mm_any.json",
+      "source_path": "<path_to_repo>/exploration/retrieval_results_conda_cleaned_def/retrieval_data_cirr_task7_aggregated_best_rank_mm_any.json",
+      "selection": {
+        "composition_required": {
+          "selection_mode": "agreement_from_reference_pool",
+          "selected_size": 8,
+          "sampling_file": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/cirr_composition_required_agreement_seed20260423.json"
+        },
+        "unresolved": {
+          "selection_mode": "agreement_from_reference_pool",
+          "selected_size": 7,
+          "sampling_file": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/cirr_unsolved_agreement_seed20260423.json"
+        }
+      }
+    },
+    "fashioniq": {
+      "source_file_key": "fashioniq/aggregated_best_rank_mm_any",
+      "source_filename": "retrieval_data_fashioniq_task7_aggregated_best_rank_mm_any.json",
+      "source_path": "<path_to_repo>/exploration/retrieval_results_conda_cleaned_def/retrieval_data_fashioniq_task7_aggregated_best_rank_mm_any.json",
+      "selection": {
+        "composition_required": {
+          "selection_mode": "agreement_from_reference_pool",
+          "selected_size": 7,
+          "sampling_file": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/fashioniq_composition_required_agreement_seed20260423.json"
+        },
+        "unresolved": {
+          "selection_mode": "agreement_from_reference_pool",
+          "selected_size": 7,
+          "sampling_file": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/fashioniq_unsolved_agreement_seed20260423.json"
+        }
+      }
+    },
+    "lasco": {
+      "source_file_key": "lasco/aggregated_best_rank_mm_any",
+      "source_filename": "retrieval_data_lasco_task7_aggregated_best_rank_mm_any.json",
+      "source_path": "<path_to_repo>/exploration/retrieval_results_conda_cleaned_def/retrieval_data_lasco_task7_aggregated_best_rank_mm_any.json",
+      "selection": {
+        "composition_required": {
+          "selection_mode": "agreement_from_reference_pool",
+          "selected_size": 7,
+          "sampling_file": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/lasco_composition_required_agreement_seed20260423.json"
+        },
+        "unresolved": {
+          "selection_mode": "agreement_from_reference_pool",
+          "selected_size": 7,
+          "sampling_file": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/lasco_unsolved_agreement_seed20260423.json"
+        }
+      }
+    }
+  },
+  "sampling_files": {
+    "circo": {
+      "composition_required": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/circo_composition_required_agreement_seed20260423.json",
+      "unresolved": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/circo_unsolved_agreement_seed20260423.json"
+    },
+    "cirr": {
+      "composition_required": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/cirr_composition_required_agreement_seed20260423.json",
+      "unresolved": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/cirr_unsolved_agreement_seed20260423.json"
+    },
+    "fashioniq": {
+      "composition_required": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/fashioniq_composition_required_agreement_seed20260423.json",
+      "unresolved": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/fashioniq_unsolved_agreement_seed20260423.json"
+    },
+    "lasco": {
+      "composition_required": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/lasco_composition_required_agreement_seed20260423.json",
+      "unresolved": "<path_to_repo>/exploration/study_multimodal_validity_agreement/sampling/lasco_unsolved_agreement_seed20260423.json"
+    }
+  },
+  "agreement_sampling": {
+    "total_requested": 50,
+    "dataset_counts": {
+      "circo": 7,
+      "cirr": 86,
+      "fashioniq": 250,
+      "lasco": 250
+    },
+    "dataset_quotas": {
+      "circo": 7,
+      "cirr": 15,
+      "fashioniq": 14,
+      "lasco": 14
+    },
+    "sampling_by_dataset": {
+      "circo": {
+        "source_pool_size": 7,
+        "selected_size": 7,
+        "category_quotas": {
+          "composition_required": 6,
+          "unresolved": 1
+        },
+        "selected_query_indices": [
+          44,
+          55,
+          85,
+          107,
+          115,
+          157,
+          204
+        ]
+      },
+      "cirr": {
+        "source_pool_size": 86,
+        "selected_size": 15,
+        "category_quotas": {
+          "composition_required": 8,
+          "unresolved": 7
+        },
+        "selected_query_indices": [
+          1287,
+          1320,
+          1590,
+          1852,
+          2157,
+          2291,
+          2354,
+          2425,
+          2677,
+          2698,
+          3075,
+          3775,
+          3909,
+          3985,
+          4077
+        ]
+      },
+      "fashioniq": {
+        "source_pool_size": 250,
+        "selected_size": 14,
+        "category_quotas": {
+          "composition_required": 7,
+          "unresolved": 7
+        },
+        "selected_query_indices": [
+          998,
+          1551,
+          2097,
+          2206,
+          3144,
+          3586,
+          3588,
+          4008,
+          4113,
+          4541,
+          5628,
+          5715,
+          5835,
+          5936
+        ]
+      },
+      "lasco": {
+        "source_pool_size": 250,
+        "selected_size": 14,
+        "category_quotas": {
+          "composition_required": 7,
+          "unresolved": 7
+        },
+        "selected_query_indices": [
+          4811,
+          4962,
+          6693,
+          6857,
+          8002,
+          10395,
+          13127,
+          18183,
+          18743,
+          20000,
+          20345,
+          21049,
+          24114,
+          24761
+        ]
+      }
+    }
+  },
+  "assignment_counts_by_user": {
+    "annotator_06": {
+      "total_assignments": 50,
+      "completed_assignments": 0,
+      "dataset_counts": {
+        "circo": 7,
+        "cirr": 15,
+        "fashioniq": 14,
+        "lasco": 14
+      },
+      "hidden_category_counts": {
+        "composition_required": 28,
+        "unresolved": 22
+      },
+      "dataset_hidden_category_counts": {
+        "circo::composition_required": 6,
+        "circo::unresolved": 1,
+        "cirr::composition_required": 8,
+        "cirr::unresolved": 7,
+        "fashioniq::composition_required": 7,
+        "fashioniq::unresolved": 7,
+        "lasco::composition_required": 7,
+        "lasco::unresolved": 7
+      },
+      "assignment_ids_sha256": "8062a415bd07d301fd7dd330d412d9c9a24b0af4f8843fc278a6afe40867ca15"
+    },
+    "annotator_07": {
+      "total_assignments": 50,
+      "completed_assignments": 0,
+      "dataset_counts": {
+        "circo": 7,
+        "cirr": 15,
+        "fashioniq": 14,
+        "lasco": 14
+      },
+      "hidden_category_counts": {
+        "composition_required": 28,
+        "unresolved": 22
+      },
+      "dataset_hidden_category_counts": {
+        "circo::composition_required": 6,
+        "circo::unresolved": 1,
+        "cirr::composition_required": 8,
+        "cirr::unresolved": 7,
+        "fashioniq::composition_required": 7,
+        "fashioniq::unresolved": 7,
+        "lasco::composition_required": 7,
+        "lasco::unresolved": 7
+      },
+      "assignment_ids_sha256": "1eae4b35d3dec95ddc1c343df0833b01002d051ebcee3c280af5445404a9dacc"
+    },
+    "annotator_04": {
+      "total_assignments": 50,
+      "completed_assignments": 0,
+      "dataset_counts": {
+        "circo": 7,
+        "cirr": 15,
+        "fashioniq": 14,
+        "lasco": 14
+      },
+      "hidden_category_counts": {
+        "composition_required": 28,
+        "unresolved": 22
+      },
+      "dataset_hidden_category_counts": {
+        "circo::composition_required": 6,
+        "circo::unresolved": 1,
+        "cirr::composition_required": 8,
+        "cirr::unresolved": 7,
+        "fashioniq::composition_required": 7,
+        "fashioniq::unresolved": 7,
+        "lasco::composition_required": 7,
+        "lasco::unresolved": 7
+      },
+      "assignment_ids_sha256": "7c0dbe5c74bff00d49638d698982701c9b4e2df89884667693997b00b785cae9"
+    },
+    "annotator_02": {
+      "total_assignments": 50,
+      "completed_assignments": 0,
+      "dataset_counts": {
+        "circo": 7,
+        "cirr": 15,
+        "fashioniq": 14,
+        "lasco": 14
+      },
+      "hidden_category_counts": {
+        "composition_required": 28,
+        "unresolved": 22
+      },
+      "dataset_hidden_category_counts": {
+        "circo::composition_required": 6,
+        "circo::unresolved": 1,
+        "cirr::composition_required": 8,
+        "cirr::unresolved": 7,
+        "fashioniq::composition_required": 7,
+        "fashioniq::unresolved": 7,
+        "lasco::composition_required": 7,
+        "lasco::unresolved": 7
+      },
+      "assignment_ids_sha256": "85543966dc08db5306b8ee18f9989399244859a727060c12df0d8efa00ddbb06"
+    },
+    "annotator_01": {
+      "total_assignments": 50,
+      "completed_assignments": 0,
+      "dataset_counts": {
+        "circo": 7,
+        "cirr": 15,
+        "fashioniq": 14,
+        "lasco": 14
+      },
+      "hidden_category_counts": {
+        "composition_required": 28,
+        "unresolved": 22
+      },
+      "dataset_hidden_category_counts": {
+        "circo::composition_required": 6,
+        "circo::unresolved": 1,
+        "cirr::composition_required": 8,
+        "cirr::unresolved": 7,
+        "fashioniq::composition_required": 7,
+        "fashioniq::unresolved": 7,
+        "lasco::composition_required": 7,
+        "lasco::unresolved": 7
+      },
+      "assignment_ids_sha256": "536451bba90728b9a4aea76b8541f0c43cc22abecb75afe7253d5d77b042dc08"
+    },
+    "annotator_05": {
+      "total_assignments": 50,
+      "completed_assignments": 0,
+      "dataset_counts": {
+        "circo": 7,
+        "cirr": 15,
+        "fashioniq": 14,
+        "lasco": 14
+      },
+      "hidden_category_counts": {
+        "composition_required": 28,
+        "unresolved": 22
+      },
+      "dataset_hidden_category_counts": {
+        "circo::composition_required": 6,
+        "circo::unresolved": 1,
+        "cirr::composition_required": 8,
+        "cirr::unresolved": 7,
+        "fashioniq::composition_required": 7,
+        "fashioniq::unresolved": 7,
+        "lasco::composition_required": 7,
+        "lasco::unresolved": 7
+      },
+      "assignment_ids_sha256": "4c85bdd836d5f50c248f6ccbe6a2c7427a9178178e4826d9e6acf2164a41b910"
+    },
+    "annotator_10": {
+      "total_assignments": 50,
+      "completed_assignments": 0,
+      "dataset_counts": {
+        "circo": 7,
+        "cirr": 15,
+        "fashioniq": 14,
+        "lasco": 14
+      },
+      "hidden_category_counts": {
+        "composition_required": 28,
+        "unresolved": 22
+      },
+      "dataset_hidden_category_counts": {
+        "circo::composition_required": 6,
+        "circo::unresolved": 1,
+        "cirr::composition_required": 8,
+        "cirr::unresolved": 7,
+        "fashioniq::composition_required": 7,
+        "fashioniq::unresolved": 7,
+        "lasco::composition_required": 7,
+        "lasco::unresolved": 7
+      },
+      "assignment_ids_sha256": "cd33002396b931ca01ba7e24cf51df684a2bf27f7e33d81618ba0b58f927429d"
+    }
+  }
+}

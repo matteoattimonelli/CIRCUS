@@ -1,0 +1,12 @@
+{
+  "dataset": "circo",
+  "hidden_category": "unresolved",
+  "selection_field": "annotation.validated",
+  "selection_value": true,
+  "deduplication_policy": "keep_first_drop_second_duplicate_block",
+  "query_indices": [
+    134,
+    157,
+    207
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "deduplication_policy": {
+    "duplicate_users": [
+      "annotator_03",
+      "annotator_08"
+    ],
+    "kept_user": "annotator_03",
+    "dropped_user": "annotator_08",
+    "duplicate_example_count": 593
+  },
+  "overall": {
+    "unique_examples": 4741,
+    "labeled_examples": 4741,
+    "validated_false_examples": 3052,
+    "validated_true_examples": 1689
+  },
+  "per_dataset_category": {
+    "circo::composition_required": {
+      "unique_examples": 53,
+      "labeled_examples": 53,
+      "validated_false_examples": 14,
+      "validated_true_examples": 39
+    },
+    "circo::unresolved": {
+      "unique_examples": 3,
+      "labeled_examples": 3,
+      "validated_true_examples": 3
+    },
+    "cirr::composition_required": {
+      "unique_examples": 271,
+      "labeled_examples": 271,
+      "validated_false_examples": 124,
+      "validated_true_examples": 147
+    },
+    "cirr::unresolved": {
+      "unique_examples": 414,
+      "labeled_examples": 414,
+      "validated_false_examples": 258,
+      "validated_true_examples": 156
+    },
+    "fashioniq::composition_required": {
+      "unique_examples": 1000,
+      "labeled_examples": 1000,
+      "validated_false_examples": 632,
+      "validated_true_examples": 368
+    },
+    "fashioniq::unresolved": {
+      "unique_examples": 1000,
+      "labeled_examples": 1000,
+      "validated_false_examples": 782,
+      "validated_true_examples": 218
+    },
+    "lasco::composition_required": {
+      "unique_examples": 1000,
+      "labeled_examples": 1000,
+      "validated_false_examples": 548,
+      "validated_true_examples": 452
+    },
+    "lasco::unresolved": {
+      "unique_examples": 1000,
+      "labeled_examples": 1000,
+      "validated_true_examples": 306,
+      "validated_false_examples": 694
+    }
+  },
+  "reason_counts_false_examples": {
+    "QUERY_TOO_BROAD": 2193,
+    "INVALID_TARGET_IMAGE": 611,
+    "INVALID_TEXT_QUERY": 318,
+    "INVALID_IMAGE_QUERY": 69
+  },
+  "report_markdown": "<path_to_repo>/final_dataset/annotation_study.md"
+}

@@ -1,0 +1,58 @@
+{
+  "dataset": "circo",
+  "task_id": 7,
+  "k": 10,
+  "source_audit_json": "shortcut_audit/retrieval_data_circo_task7_aggregated_best_rank_mm_any.json",
+  "source_query_jsonl": "<path_to_M-BEIR>/query/test/circo_test.jsonl",
+  "output_query_jsonl": "shortcut_free_subsets/circo/shortcut_solvable/mbeir_circo_task7_test_multimodal.jsonl",
+  "output_trace_jsonl": "shortcut_free_subsets/circo/shortcut_solvable/mbeir_circo_task7_test_multimodal.trace.jsonl",
+  "output_trace_csv": "shortcut_free_subsets/circo/shortcut_solvable/mbeir_circo_task7_test_multimodal.trace.csv",
+  "selection_field": "label",
+  "selection_values": [
+    "shortcut_solvable"
+  ],
+  "selected_queries": 164,
+  "total_queries_in_source": 220,
+  "regenerated_at": "2026-05-02T13:17:47Z",
+  "aggregation": {
+    "name": "best_rank_mm_recoverable",
+    "retrievers": [
+      "e5_omni",
+      "gemini_embedding_2",
+      "gme_qwen2vl_retriever_2",
+      "lamra",
+      "lamra_qwen25vl",
+      "mmembed",
+      "qwen3vl2b_vllm",
+      "qwen3vl8b_vllm",
+      "rzen_embed",
+      "vlm2vec_v2",
+      "voyage_multimodal_35"
+    ],
+    "source_files": [
+      "<path_to_repo>/exploration/retrieval_results_circo_conda/retrieval_data_circo_task7_e5_omni.json",
+      "<path_to_repo>/exploration/retrieval_results_circo_conda/retrieval_data_circo_task7_gemini_embedding_2.json",
+      "<path_to_repo>/exploration/retrieval_results_circo_conda/retrieval_data_circo_task7_gme_qwen2vl_retriever_2.json",
+      "<path_to_repo>/exploration/retrieval_results_circo_conda/retrieval_data_circo_task7_lamra.json",
+      "<path_to_repo>/exploration/retrieval_results_circo_conda/retrieval_data_circo_task7_lamra_qwen25vl.json",
+      "<path_to_repo>/exploration/retrieval_results_circo_conda/retrieval_data_circo_task7_mmembed.json",
+      "<path_to_repo>/exploration/retrieval_results_circo_conda/retrieval_data_circo_task7_qwen3vl2b_vllm.json",
+      "<path_to_repo>/exploration/retrieval_results_circo_conda/retrieval_data_circo_task7_qwen3vl8b_vllm.json",
+      "<path_to_repo>/exploration/retrieval_results_circo_conda/retrieval_data_circo_task7_rzen_embed.json",
+      "<path_to_repo>/exploration/retrieval_results_circo_conda/retrieval_data_circo_task7_vlm2vec_v2.json",
+      "<path_to_repo>/exploration/retrieval_results_circo_conda/retrieval_data_circo_task7_voyage_multimodal_35.json"
+    ],
+    "rank_aggregation": {
+      "multimodal": "min",
+      "text_only": "min",
+      "image_only": "min"
+    },
+    "query_alignment_key": "query_idx",
+    "min_mm_success_retrievers": 1,
+    "definition": {
+      "composition_required": "best_text_rank > K and best_image_rank > K and retriever_support_at_k.multimodal >= min_mm_success_retrievers",
+      "unresolved": "best_text_rank > K and best_image_rank > K and retriever_support_at_k.multimodal < min_mm_success_retrievers",
+      "shortcut_solvable": "best_text_rank <= K or best_image_rank <= K"
+    }
+  }
+}
